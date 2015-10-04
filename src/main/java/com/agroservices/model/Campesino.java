@@ -4,6 +4,7 @@ package com.agroservices.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,7 +65,7 @@ public class Campesino  implements java.io.Serializable {
         this.idCampesinos = idCampesinos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="Ubicaciones_idUbicaciones", nullable=false)
     public Ubicacion getUbicaciones() {
         return this.ubicaciones;
