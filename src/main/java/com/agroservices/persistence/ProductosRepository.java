@@ -6,7 +6,11 @@
 package com.agroservices.persistence;
 
 import com.agroservices.model.Producto;
+import java.util.Date;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -14,4 +18,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ProductosRepository extends CrudRepository<Producto, Integer>{
     
+    @Query("SELECT p.productos.nombre FROM ProductoEnVenta p WHERE p.idProductosEnVenta in "
+                + "(SELECT d.detalleFactura.productosEnVenta.idProductosEnVenta FROM Despacho d WHERE d.rutas.transportistas.idTransportistas= :transportistaID AND d.rutas.fechaInicio=:fechaID)")
+    public List<Integer> productosPorFecha(@Param("fechaID") Date date, @Param("transportistaID") Integer id);
 }

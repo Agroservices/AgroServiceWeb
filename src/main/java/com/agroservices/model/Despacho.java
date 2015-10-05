@@ -54,7 +54,7 @@ public class Despacho  implements java.io.Serializable {
         this.idDespachos = idDespachos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( { 
         @JoinColumn(name="DetalleFactura_ProductosEnVenta_idProductosEnVenta", referencedColumnName="ProductosEnVenta_idProductosEnVenta", nullable=false), 
         @JoinColumn(name="DetalleFactura_Facturas_idFacturas", referencedColumnName="Facturas_idFacturas", nullable=false) } )

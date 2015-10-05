@@ -79,7 +79,7 @@ public class DetalleFactura  implements java.io.Serializable {
         this.facturas = facturas;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ProductosEnVenta_idProductosEnVenta", nullable=false, insertable=false, updatable=false)
     public ProductoEnVenta getProductosEnVenta() {
         return this.productosEnVenta;

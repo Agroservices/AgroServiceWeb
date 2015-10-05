@@ -5,7 +5,7 @@
  */
 package com.agroservices.persistence;
 
-import com.agroservices.model.Ruta;
+import com.agroservices.model.Despacho;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -16,8 +16,9 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Andres Barrero
  */
-public interface RutasRepository extends CrudRepository<Ruta, Integer>{
+public interface DespachosRepository extends CrudRepository<Despacho, Integer>{
     
-    @Query("SELECT r.idRutas FROM Ruta r WHERE r.fechaInicio=:fechaID AND r.transportistas.idTransportistas= :transportistaID")
-    public List<Integer> rutasPorTransportista(@Param("fechaID") Date date, @Param("transportistaID") Integer id);
+    @Query("from Despacho d where d.idDespachos=:idDespacho")
+    public Despacho search(@Param("idDespacho") Integer id);
+    
 }
