@@ -22,12 +22,13 @@ public class ProductosEnVentaFacade {
     @Autowired
     ProductosEnVentaRepository pr;
     
-    public List<ProductoEnVenta> getProductosEnVentaPorCampesino(Campesino c){
-        return null;
+    public List<ProductoEnVenta> getProductosEnVentaPorCampesino(int idCampesino){
+        return pr.productosEnVentePorCampesino(idCampesino);
     }
     
-    public void setProductoEnVentaParaCampesino(Campesino campesino, ProductoEnVenta prodVenta){
-        
+    public void saveProductoEnVentaParaCampesino(Campesino campesino, ProductoEnVenta prodVenta){
+        prodVenta.setCampesinos(campesino);
+        pr.save(prodVenta);
     }
     
     public void saveProductoEnVenta(ProductoEnVenta pev){
