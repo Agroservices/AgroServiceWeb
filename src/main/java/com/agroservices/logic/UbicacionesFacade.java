@@ -5,10 +5,8 @@
  */
 package com.agroservices.logic;
 
-
-import com.agroservices.model.Venta;
-import com.agroservices.persistence.VentasRepository;
-import javax.transaction.Transactional;
+import com.agroservices.model.Ubicacion;
+import com.agroservices.persistence.UbicacionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +15,13 @@ import org.springframework.stereotype.Service;
  * @author Andres Barrero
  */
 @Service
-public class VentasFacade {
+public class UbicacionesFacade {
     
     @Autowired
-    VentasRepository vr;
+    UbicacionesRepository ur;
     
-    @Transactional
-    public void guardarVenta(Venta v){
-        vr.save(v);
+    public void saveUbicacion(Ubicacion u){
+        ur.save(u);
     }
     
-    public Venta consultarVenta(int id){
-        return vr.findOne(id);
-    }
 }

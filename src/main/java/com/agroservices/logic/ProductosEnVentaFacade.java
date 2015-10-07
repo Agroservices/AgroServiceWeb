@@ -30,4 +30,8 @@ public class ProductosEnVentaFacade {
         
     }
     
+    public void saveProductoEnVenta(ProductoEnVenta pev){
+        pr.save(pev);
+    }
+    
 }

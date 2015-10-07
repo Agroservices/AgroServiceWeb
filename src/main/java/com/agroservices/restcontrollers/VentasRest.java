@@ -7,10 +7,15 @@ package com.agroservices.restcontrollers;
 
 import com.agroservices.logic.VentasFacade;
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Producto;
+import com.agroservices.model.ProductoEnVenta;
+import com.agroservices.model.Ubicacion;
 import com.agroservices.model.Venta;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +41,19 @@ public class VentasRest {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public Venta consultarVenta()throws OperationFailedException{
+        Producto p = new Producto("papa", 5, true);
+        Ubicacion u = new Ubicacion("direccion", "Cajica", "Cdnm", "70", "80");
+        Campesino c = new Campesino(1, u, "Guillermo","Alvarez ", "123456");
+        ProductoEnVenta pev = new ProductoEnVenta(c, p, "Papa muyyyy rica", new Date(), (float)52, (float)20);
+        Venta v = new Venta(c, pev);
+        /*Venta v = vf.consultarVenta(id);
+        if(v==null)
+            throw new OperationFailedException();*/
+        return v;
     } 
     
 }

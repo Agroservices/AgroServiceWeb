@@ -33,7 +33,7 @@ public class CampesinosFacade {
      * Se vuelve persistente el campesino en la base de datos si no existe previamente
      */     
     @Transactional
-    public void guardarCampesino(Campesino c)throws Exception{
+    public void guardarCampesino(Campesino c){
         //if(cr.exists(c.getIdCampesinos()))throw new Exception("Error en el campesino");
         //if(ur.exists(c.getUbicaciones().getIdUbicaciones()))throw new Exception("Error en la ubicacion");
         cr.save(c);

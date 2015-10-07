@@ -31,10 +31,10 @@ public class Venta  implements java.io.Serializable {
     public Venta() {
     }
 
-    public Venta(Campesino campesinos, ProductoEnVenta productosEnVenta, Date fechaVenta) {
+    public Venta(Campesino campesinos, ProductoEnVenta productosEnVenta) {
        this.campesinos = campesinos;
        this.productosEnVenta = productosEnVenta;
-       this.fechaVenta = fechaVenta;
+       this.fechaVenta = new Date();
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
