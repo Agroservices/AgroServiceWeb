@@ -21,4 +21,8 @@ public interface ProductosRepository extends CrudRepository<Producto, Integer>{
     @Query("SELECT p.productos.nombre FROM ProductoEnVenta p WHERE p.idProductosEnVenta in "
                 + "(SELECT d.detalleFactura.productosEnVenta.idProductosEnVenta FROM Despacho d WHERE d.rutas.transportistas.idTransportistas= :transportistaID AND d.rutas.fechaInicio=:fechaID)")
     public List<Integer> productosPorFecha(@Param("fechaID") Date date, @Param("transportistaID") Integer id);
+    
+    @Query("SELECT p FROM Producto p WHERE p.nombre like :nombre")
+    public List<Producto> validacionProductoPorNombre(@Param("nombre")String nombre);
+    
 }
