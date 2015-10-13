@@ -25,4 +25,8 @@ public interface ProductosRepository extends CrudRepository<Producto, Integer>{
     @Query("SELECT p FROM Producto p WHERE p.nombre like :nombre")
     public List<Producto> validacionProductoPorNombre(@Param("nombre")String nombre);
     
+    //Consulta encargada de retornar un producto dado su nombre
+    @Query("SELECT p FROM Producto p WHERE p.nombre = ':nombreProducto'")
+    public List<Producto> getProductoPorNombre(@Param("nombreProducto") String nombreProducto);
+    
 }
