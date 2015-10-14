@@ -12,6 +12,7 @@ import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ubicacion;
 import com.agroservices.model.Venta;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,17 @@ public class VentasRest {
     }
     
     @RequestMapping(value = "/",method = RequestMethod.GET)
+    public List<Venta> consultarTodasVentas()throws OperationFailedException{
+        
+        return vf.ventasTotalesDummy();
+    }
+    
+    @RequestMapping(value="/check",method = RequestMethod.GET)        
+    public String check() {
+        return "REST API VENTAS OK";        
+    }
+    
+    @RequestMapping(value = "/abc",method = RequestMethod.GET)
     public Venta consultarVenta()throws OperationFailedException{
         Producto p = new Producto("papa", 5, true);
         Ubicacion u = new Ubicacion("direccion", "Cajica", "Cdnm", "70", "80");
@@ -54,6 +66,6 @@ public class VentasRest {
         if(v==null)
             throw new OperationFailedException();*/
         return v;
-    } 
+    }
     
 }
