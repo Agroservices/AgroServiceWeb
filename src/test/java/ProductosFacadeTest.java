@@ -175,11 +175,17 @@ public class ProductosFacadeTest {
         vf.guardarVenta(v3);
         vf.guardarVenta(v4);
         
-            assertTrue(true==true);
+        List<Venta> ventas = vf.ventasTotales();
+        
+        assertTrue("Se espera que el numero de ventas registradas sea 4", ventas.size()==4);
+        assertTrue("La primera venta se le realizo al campesino Pedro Nel con c.c 123456789",ventas.get(0).getCampesinos().getNombres().equalsIgnoreCase("Pedro Nel") && ventas.get(0).getCampesinos().getIdCampesinos()==123456789);
+        assertTrue("La segunda venta fue de frijoles", ventas.get(1).getProductosEnVenta().getProductos().getNombre().equalsIgnoreCase("Frijoles"));
         
         } catch (OperationFailedException ex) {
             Logger.getLogger(ProductosFacadeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
 }

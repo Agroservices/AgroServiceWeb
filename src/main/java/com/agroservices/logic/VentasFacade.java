@@ -8,6 +8,7 @@ package com.agroservices.logic;
 
 import com.agroservices.model.Venta;
 import com.agroservices.persistence.VentasRepository;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,9 @@ public class VentasFacade {
     public Venta consultarVenta(int id){
         return vr.findOne(id);
     }
+    
+    public List<Venta> ventasTotales(){
+        return vr.getVentasTotales();
+    }
+    
 }
