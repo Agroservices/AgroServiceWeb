@@ -46,13 +46,17 @@ public class VentasRest {
     
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public List<Venta> consultarTodasVentas()throws OperationFailedException{
-        
         return vf.ventasTotalesDummy();
     }
     
     @RequestMapping(value="/check",method = RequestMethod.GET)        
     public String check() {
         return "REST API VENTAS OK";        
+    }
+    
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public List<Venta> ventasCampesino(@PathVariable int id)throws OperationFailedException{
+        return vf.ventasDeCampesino(id);
     }
     
     @RequestMapping(value = "/abc",method = RequestMethod.GET)

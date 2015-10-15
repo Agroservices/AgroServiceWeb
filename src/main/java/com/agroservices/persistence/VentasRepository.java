@@ -9,6 +9,7 @@ import com.agroservices.model.Venta;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -19,4 +20,6 @@ public interface VentasRepository extends CrudRepository<Venta, Integer>{
     @Query("FROM Venta v")
     public List<Venta> getVentasTotales();
     
+    @Query("FROM Venta v WHERE v.campesinos.idCampesinos=:campesinoID")
+    public List<Venta> ventasPorCampesino(@Param("campesinoID") Integer id);
 }

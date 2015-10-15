@@ -3,16 +3,20 @@
         
     app.controller('agroservicescontroller', function ($scope,$location,AgroservicesRestAPI) {
         
-        //$scope.ventas=AgroservicesRestAPI.getVentas();
-        $scope.ventas = AgroservicesRestAPI.getVentas().success(function(data, status,headers, config){
-            $scope.ventas = data;
-        });
-        $scope.ventaSeleccionada={};
         
-        $scope.setVentaSeleccionada = function (venta){
-            $scope.ventaSeleccionada=venta;
+        $scope.idCampesino=0;
+        
+        $scope.ventasPorCampesino = function (){
+            $scope.ventas = AgroservicesRestAPI.getVentasByCampesino($scope.idCampesino).success(function(data,status,headers,config){
+                $scope.ventas = data;
+            });
         };
-
+        
+        $scope.totalVentas = function () {
+            $scope.ventas = AgroservicesRestAPI.getVentas().success(function(data, status,headers, config){
+                $scope.ventas = data;
+            });
+        };
     }
     );
 

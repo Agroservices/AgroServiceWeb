@@ -38,13 +38,16 @@ public class VentasFacade {
         ProductoEnVenta pev1 = new ProductoEnVenta(c1, p, "Papa muyyyy rica", new Date(), (float)52, (float)20);
         Campesino c2 = new Campesino(2, u, "Andres","Melo", "123456");
         Producto p2 = new Producto("Arroz", 5, true);
-        ProductoEnVenta pev2 = new ProductoEnVenta(c2, p2, "Papa muyyyy rica", new Date(), (float)52, (float)20);
+        ProductoEnVenta pev2 = new ProductoEnVenta(c2, p2, "Papa muyyyy rica", new Date(), (float)52, (float)5);
         Campesino c3 = new Campesino(3, u, "Felipe","Barrero", "123456");
         Producto p3 = new Producto("Lechuga", 5, true);
-        ProductoEnVenta pev3 = new ProductoEnVenta(c3, p3, "Papa muyyyy rica", new Date(), (float)52, (float)20);
+        ProductoEnVenta pev3 = new ProductoEnVenta(c3, p3, "Papa muyyyy rica", new Date(), (float)52, (float)10);
+        Producto p4 = new Producto("Lechuga", 5, true);
+        ProductoEnVenta pev4 = new ProductoEnVenta(c3, p4, "Papa sabrosa", new Date(), (float)10, (float)10);
         dummySellsData.add(new Venta(c1, pev1));
         dummySellsData.add(new Venta(c2, pev2));
         dummySellsData.add(new Venta(c3, pev3));
+        dummySellsData.add(new Venta(c3, pev4));
     }
     
     
@@ -63,6 +66,17 @@ public class VentasFacade {
     
     public List<Venta> ventasTotalesDummy(){
         return dummySellsData;
+    }
+    
+    public List<Venta> ventasDeCampesino(int id){
+        List<Venta> aux = new LinkedList<>();
+        for(Venta ve : dummySellsData){
+            if(ve.getCampesinos().getIdCampesinos()==id){
+                aux.add(ve);
+            }
+        }
+        return aux;
+        //return vr.ventasPorCampesino(id);
     }
     
 }
