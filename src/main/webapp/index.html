@@ -63,7 +63,7 @@
                         <a href="#about">Consultar ventas</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Comprar</a>
+                        <a href="#comprar" ng-click="getProductos()">Comprar</a>
                     </li>
                 </ul>
             </div>
@@ -225,8 +225,8 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Comprar Section -->
+    <section id="comprar">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -234,6 +234,24 @@
                     <hr class="star-primary">
                 </div>
             </div>
+            
+            <!-- formulario consulta -->
+            
+            <div>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <label>Productos :</label>
+                    <select ng-model="idProductoConsulta">
+                        <option  ng-repeat="prod in productos" value="{{prod.idProductos}}"  >{{prod.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <input type="text" placeholder="Cantidad deseada" ng-model="cantidadConsulta" class="form-control" />
+                </div>
+                <div>
+                    <button class="btn btn-primary" ng-click="getProductosEnventa()"> Consultar</button>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->

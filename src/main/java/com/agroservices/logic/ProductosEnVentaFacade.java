@@ -6,6 +6,7 @@
 package com.agroservices.logic;
 
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.persistence.ProductosEnVentaRepository;
 import java.util.List;
@@ -35,4 +36,11 @@ public class ProductosEnVentaFacade {
         pr.save(pev);
     }
     
+    
+    
+    public List<ProductoEnVenta> getProductosEnVentaConsulta(int idProducto, int cantidad){
+        
+        return pr.productosEnVentaPorCantidadProducto(idProducto, cantidad);
+        
+    }
 }

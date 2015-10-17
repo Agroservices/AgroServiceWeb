@@ -28,18 +28,6 @@ public class ComprasRest {
     @Autowired
     ComprasFacade cf;
     
-    //Se determina que la id estara compuesta asi: "#-%" donde #= producro y &=cantidad
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public List<ProductoEnVenta> getConsultaProductosEVProductoCantidad(@PathVariable String id){
-        
-        String elementoDivisor = "-";
-        String[] valores = id.split(elementoDivisor);//  0: producto 1:cantidad
-        
-        Producto p = cf.getProducto(valores[0]);
-        List<ProductoEnVenta> productos = cf.getProductosEnVentaConsulta(p.getIdProductos(), Integer.parseInt(valores[1]));
-        
-        return productos;
-        
-    }
+
     
 }

@@ -29,4 +29,5 @@ public interface ProductosRepository extends CrudRepository<Producto, Integer>{
     @Query("SELECT p FROM Producto p WHERE p.nombre = ':nombreProducto'")
     public List<Producto> getProductoPorNombre(@Param("nombreProducto") String nombreProducto);
     
+    
 }

@@ -27,24 +27,7 @@ public class ComprasFacade {
     @Autowired
     ProductosRepository pr;
     
-    /**
-     * Método encargado de retornar el producto que concuerde con el nombre ingresado
-     * @param nombre nombre del producto que se desea obtener
-     * @return 
-     */
     
-    public Producto getProducto(String nombre){
-        
-        return pr.getProductoPorNombre(nombre).get(0);
-        
-    }
-    
-    
-    public List<ProductoEnVenta> getProductosEnVentaConsulta(int idProducto, int cantidad){
-        
-        return per.productosEnVentaPorCantidadProducto(idProducto, cantidad);
-        
-    }
     
     
 }

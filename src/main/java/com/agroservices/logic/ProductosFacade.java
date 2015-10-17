@@ -38,6 +38,12 @@ public class ProductosFacade {
         if(!productosPorNombre.isEmpty())throw new OperationFailedException();        
         pr.save(producto);        
     }
+    
+    public Producto getProducto(int id){
+        
+        return pr.findOne(id);
+        
+    }
             
     
 }
