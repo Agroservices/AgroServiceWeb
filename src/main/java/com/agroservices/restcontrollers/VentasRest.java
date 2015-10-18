@@ -46,7 +46,8 @@ public class VentasRest {
     
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public List<Venta> consultarTodasVentas()throws OperationFailedException{
-        return vf.ventasTotalesDummy();
+        return vf.ventasTotales();
+        //return vf.ventasTotalesDummy();
     }
     
     @RequestMapping(value="/check",method = RequestMethod.GET)        
