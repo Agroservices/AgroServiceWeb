@@ -11,6 +11,10 @@ import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ubicacion;
 import com.agroservices.model.Venta;
+import com.agroservices.persistence.CampesinosRepository;
+import com.agroservices.persistence.ProductosEnVentaRepository;
+import com.agroservices.persistence.ProductosRepository;
+import com.agroservices.persistence.UbicacionesRepository;
 import com.agroservices.persistence.VentasRepository;
 import java.util.Date;
 import java.util.LinkedList;
@@ -69,14 +73,13 @@ public class VentasFacade {
     }
     
     public List<Venta> ventasDeCampesino(int id){
-        List<Venta> aux = new LinkedList<>();
+        /*List<Venta> aux = new LinkedList<>();
         for(Venta ve : dummySellsData){
             if(ve.getCampesinos().getIdCampesinos()==id){
                 aux.add(ve);
             }
         }
-        return aux;
-        //return vr.ventasPorCampesino(id);
+        return aux;*/
+        return vr.ventasPorCampesino(id);
     }
-    
 }
