@@ -36,6 +36,7 @@
         
         $scope.getProductosEnventa = function(){
             $scope.sumaId = $scope.idProductoConsulta.toString() + "-" + $scope.cantidadConsulta;
+            //alert($scope.sumaId);
             $scope.productosEnVenta = AgroservicesRestAPI.getProductosEnVentaConsulta().success(function(data, status,headers, config){
                 $scope.productosEnVenta = data;
                 

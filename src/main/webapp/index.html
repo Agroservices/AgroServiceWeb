@@ -252,6 +252,29 @@
                 </div>
             </div>
             
+            <!-- Tabla que muestra la informacion de los productos en venta para su seleccion -->
+            
+            <div class="col-lg-8 col-lg-offset-2">
+                <table class="table table-condensed table-bordered table-hover">
+                    <thead>
+                        <th>Descripción</th>
+                        <th>Fecha Cosecha</th>
+                        <th>Cantidad Disponible</th>
+                        <th>Precio por kg</th>
+                    </thead>                    
+                    <tbody>
+                        <tr ng-repeat="prodEV in productosEnVenta" >
+                            <td>{{prodEV.descripcion}}</td>
+                            <td>{{prodEV.fechaCosecha}}</td>
+                            <td>{{prodEV.cantidadDisponible}}</td>
+                            <td>{{prodEV.precioPorKg}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Formulario por defecto de la plantilla-->
+            
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
