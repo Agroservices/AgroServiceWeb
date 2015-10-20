@@ -1,34 +1,38 @@
-<div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl">
+<div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl" ng-submit="fichaTecnica.$valid && enviarProductoEnVenta()">
 
     <menu-campesinos></menu-campesinos>
     <div class="col-md-9">
         <h1>Ficha Técnica de Producto</h1>
         <form name="fichaTecnica" novalidate>
-            <div>
+            <div class="form-group">
                 <label for="selected">Producto</label>
-                <select ng-model="fichaCtrl.productoSeleccionado" id="selected" requiered>
-                    <option ng-repeat="producto in productos" value="{{producto}}">{{producto.nombre}}</option>
+                <select ng-model="productoEnVenta.productos" id="selected" requiered class="form-control">
+                    <option ng-repeat="producto in productos" value='{{producto.nombre}}'>{{producto.nombre}}</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
+                <label for="fecha">Fecha Cosecha</label>
+                <input type="date" ng-model="productoEnVenta.fechaCosecha" class="form-control" required=""
+                       id="fecha" placeholder="dd-mm-yyyy"/>
+            </div>
+            <div class="form-group">
                 <label for="cantidad">Cantidad:</label>
                 <input type="number" placeholder="Cantidad" class="form-control" id="cantidad" required
-                       ng-model="fichaCtrl.cantidad"/>
+                       ng-model="productoEnVenta.cantidadDisponible"/>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="precio">Precio:</label>
                 <input type="number" placeholder="Precio" class="form-control" id="precio" required
-                       ng-model="fichaCtrl.precio"/>
+                       ng-model="productoEnVenta.precioPorKg"/>
             </div>                        
             <div class="form-group">
                 <label for="comment">Descripción:</label>
-                <textarea class="form-control" rows="5" id="comment" required
-                          ng-model="fichaCtrl.descripcion"></textarea>                
-            </div>            
+                <textarea class="form-control" rows="5" id="comment"
+                          ng-model="productoEnVenta.descripcion"></textarea>                
+            </div> 
+                                    
+            <input type="submit" value="Enviar"/>
         </form>        
     </div>
-    {{fichaCtrl.productoSeleccionado}}
-    {{fichaCtrl.cantidad}}
-    {{fichaCtrl.precio}}
-    {{fichaCtrl.descripcion}}
+    {{fichaTecnica.$valid}}    
 </div>

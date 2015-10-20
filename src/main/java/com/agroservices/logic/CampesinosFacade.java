@@ -6,12 +6,13 @@
 package com.agroservices.logic;
 
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Producto;
+import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.persistence.CampesinosRepository;
 import com.agroservices.persistence.UbicacionesRepository;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -27,6 +28,12 @@ public class CampesinosFacade {
     @Autowired
     UbicacionesRepository ur;
     
+    @Autowired
+    ProductosEnVentaFacade pvf;
+    
+    @Autowired
+    ProductosFacade pf;
+    
     /**
      * Vuelve persistente un campesino en la base de datos     
      * @param c Campesino que se desea volver persistente          
@@ -40,5 +47,20 @@ public class CampesinosFacade {
         //ur.save(c.getUbicaciones());
     }
     
+    /**
+     * Almacena un producto en venta en un campesino en especial
+     */
+    public void guardarProductoEnVentaParaCampesino(int idCampesino, ProductoEnVenta prodVenta){
+        Campesino c = cr.findOne(idCampesino);
+        //Producto p = pf.getProducto(prodVenta.getProductos().getIdProductos());
+        //prodVenta.setProductos(p);
+        prodVenta.setCampesinos(c);
+        pvf.saveProductoEnVentaParaCampesino(c, prodVenta);        
+    }
+    
+    
+    public Campesino getCampesinoPorId(int idCampesino){
+        return cr.findOne(idCampesino);
+    }
     
 }

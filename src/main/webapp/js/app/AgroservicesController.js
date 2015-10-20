@@ -85,11 +85,32 @@
                 }
             );
                
-        var productoSeleccionado = {};
+        $scope.productoEnVenta = {};
         
-        var precio = 0.0;
-        var cantidad = 0.0;
-        var descripcion = "";
+        $scope.campesino = {idCampesino:123456789};
+        
+        $scope.enviarProductoEnVenta = function(){
+            $scope.productoEnVenta.campesinos = {};
+            var productoTemp = {};
+            for(var i=0; i<$scope.productos.length;i++){         
+                $log.log($scope.productos[i]);
+                if($scope.productos[i].nombre===$scope.productoEnVenta.productos){
+                    productoTemp = $scope.productos[i];
+                }
+            }
+            $log.log(productoTemp);
+            $scope.productoEnVenta.productos = productoTemp;
+            //$scope.productoEnVenta = {};
+            $log.log($scope.productoEnVenta);
+            AgroservicesRestAPI.postProductosEnVenta($scope.productoEnVenta,$scope.campesino.idCampesino).success(                    
+                    function(data,status,header,config){
+                        $log.log("Post exitoso");
+                    }).error(function(data,status,header,config){
+                        $log.log("Post fail");
+                        $log.log(data+" "+status);
+                    });
+        };
+        
     });
     
     app.config(function($routeProvider){

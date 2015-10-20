@@ -18,6 +18,12 @@
         this.getProductosEnVentaConsulta = function(id){
             return $http.get('http://localhost:8080/agroservices28_09_15/rest/productosEnVenta/'+id);
         };
+        
+        this.postProductosEnVenta = function(productoEnVenta,idCampesino){
+            return $http.post('http://localhost:8080/agroservices28_09_15/rest/campesinos/'+idCampesino+'/productosEnVenta'
+            ,productoEnVenta);
+        };
+        
     }
     );
 

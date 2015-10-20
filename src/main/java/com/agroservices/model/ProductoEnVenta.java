@@ -40,6 +40,13 @@ public class ProductoEnVenta  implements java.io.Serializable {
     public ProductoEnVenta() {
     }
 
+    public ProductoEnVenta(Campesino campesinos, String descripcion, Date fechaCosecha, float cantidadDisponible, float precioPorKg) {
+        this.campesinos = campesinos;        
+        this.descripcion = descripcion;
+        this.fechaCosecha = fechaCosecha;
+        this.cantidadDisponible = cantidadDisponible;
+        this.precioPorKg = precioPorKg;
+    }    
 	
     public ProductoEnVenta(Campesino campesinos, Producto productos, String descripcion, Date fechaCosecha, float cantidadDisponible, float precioPorKg) {
         this.campesinos = campesinos;
