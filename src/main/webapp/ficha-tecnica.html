@@ -1,0 +1,34 @@
+<div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl">
+
+    <menu-campesinos></menu-campesinos>
+    <div class="col-md-9">
+        <h1>Ficha Técnica de Producto</h1>
+        <form name="fichaTecnica" novalidate>
+            <div>
+                <label for="selected">Producto</label>
+                <select ng-model="fichaCtrl.productoSeleccionado" id="selected" requiered>
+                    <option ng-repeat="producto in productos" value="{{producto}}">{{producto.nombre}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" placeholder="Cantidad" class="form-control" id="cantidad" required
+                       ng-model="fichaCtrl.cantidad"/>
+            </div>
+            <div>
+                <label for="precio">Precio:</label>
+                <input type="number" placeholder="Precio" class="form-control" id="precio" required
+                       ng-model="fichaCtrl.precio"/>
+            </div>                        
+            <div class="form-group">
+                <label for="comment">Descripción:</label>
+                <textarea class="form-control" rows="5" id="comment" required
+                          ng-model="fichaCtrl.descripcion"></textarea>                
+            </div>            
+        </form>        
+    </div>
+    {{fichaCtrl.productoSeleccionado}}
+    {{fichaCtrl.cantidad}}
+    {{fichaCtrl.precio}}
+    {{fichaCtrl.descripcion}}
+</div>

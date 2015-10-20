@@ -66,10 +66,51 @@
             $scope.costoCompra = $scope.cantidadConsulta * $scope.ProductoEnVenta.precioPorKg;
             
         };
-        
-        
+                        
     }
     );
+    
+    app.controller('fichaTecnicaCtrl',function($scope,$log,AgroservicesRestAPI){
+        
+        $scope.productos = [];
+        
+        $scope.productosPromise = AgroservicesRestAPI.getProductosConsultaCompra();
+        
+        $scope.productosPromise.then(
+                function(response){                    
+                    $scope.productos = response.data;
+                    $log.log($scope.productos);
+                },function(){
+                    $log.log("No se logro acceder al API de productos");
+                }
+            );
+               
+        var productoSeleccionado = {};
+        
+        var precio = 0.0;
+        var cantidad = 0.0;
+        var descripcion = "";
+    });
+    
+    app.config(function($routeProvider){
+        $routeProvider
+                .when('/campesinos',{
+                    templateUrl : 'home-campesinos.html'
+                })
+                .when('/minoristas',{
+                    templateUrl: 'home-minoristas.html'
+                })
+                .when('/fichatecnica',{
+                    templateUrl: 'ficha-tecnica.html'
+                });
+    });
+
+    app.directive('menuCampesinos',function(){
+       return{
+          restrict:'E',
+          templateUrl: 'directives/menu-campesinos.html'
+       } ;
+    });
 
 })();
 
