@@ -29,6 +29,7 @@ public class ProductosRest {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public List<Producto> getProductos(){
         
+        /*
         Producto p = new Producto("PapaCriolla", 11, true);
         Producto p1 = new Producto("PapaBlanca", 10, true);
         Producto p2 = new Producto("Tomate",12,false);
@@ -42,9 +43,9 @@ public class ProductosRest {
         productos.add(p2);
         
         return productos;
-        
+        */
         // Cuando la base de datos funcione correctamente
-        //return pf.getProductos();
+        return pf.getProductos();
         
     }
     

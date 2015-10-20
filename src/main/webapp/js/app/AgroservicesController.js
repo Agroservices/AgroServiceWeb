@@ -68,6 +68,7 @@
             $scope.costoCompra = $scope.cantidadConsulta * $scope.ProductoEnVenta.precioPorKg;
             
         };
+
         
         $scope.realizarCompra = function(){
             //{"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016}
@@ -83,6 +84,69 @@
         
     }
     );
+    
+    app.controller('fichaTecnicaCtrl',function($scope,$log,AgroservicesRestAPI){
+        
+        $scope.productos = [];
+        
+        $scope.productosPromise = AgroservicesRestAPI.getProductosConsultaCompra();
+        
+        $scope.productosPromise.then(
+                function(response){                    
+                    $scope.productos = response.data;
+                    $log.log($scope.productos);
+                },function(){
+                    $log.log("No se logro acceder al API de productos");
+                }
+            );
+               
+        $scope.productoEnVenta = {};
+        
+        $scope.campesino = {idCampesino:123456789};
+        
+        $scope.enviarProductoEnVenta = function(){
+            $scope.productoEnVenta.campesinos = {};
+            var productoTemp = {};
+            for(var i=0; i<$scope.productos.length;i++){         
+                $log.log($scope.productos[i]);
+                if($scope.productos[i].nombre===$scope.productoEnVenta.productos){
+                    productoTemp = $scope.productos[i];
+                }
+            }
+            $log.log(productoTemp);
+            $scope.productoEnVenta.productos = productoTemp;
+            //$scope.productoEnVenta = {};
+            $log.log($scope.productoEnVenta);
+            AgroservicesRestAPI.postProductosEnVenta($scope.productoEnVenta,$scope.campesino.idCampesino).success(                    
+                    function(data,status,header,config){
+                        $log.log("Post exitoso");
+                    }).error(function(data,status,header,config){
+                        $log.log("Post fail");
+                        $log.log(data+" "+status);
+                    });
+        };
+        
+    });
+    
+    app.config(function($routeProvider){
+        $routeProvider
+                .when('/campesinos',{
+                    templateUrl : 'home-campesinos.html'
+                })
+                .when('/minoristas',{
+                    templateUrl: 'home-minoristas.html'
+                })
+                .when('/fichatecnica',{
+                    templateUrl: 'ficha-tecnica.html'
+                });
+    });
+
+    app.directive('menuCampesinos',function(){
+       return{
+          restrict:'E',
+          templateUrl: 'directives/menu-campesinos.html'
+       } ;
+    });
 
 })();
 

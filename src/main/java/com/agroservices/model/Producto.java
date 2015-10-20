@@ -55,6 +55,14 @@ public class Producto  implements java.io.Serializable {
        this.productosEnVentas = productosEnVentas;
     }
    
+    public Producto(int idProductos,String nombre, int duracion, boolean refrigeracion, Set <ProductoEnVenta>productosEnVentas) {
+       this.idProductos = idProductos;
+       this.nombre = nombre;
+       this.duracion = duracion;
+       this.refrigeracion = refrigeracion;
+       this.productosEnVentas = productosEnVentas;
+    }    
+    
      @Id @GeneratedValue
 
     

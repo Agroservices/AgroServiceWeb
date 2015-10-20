@@ -6,7 +6,6 @@
 package com.agroservices.logic;
 
 import com.agroservices.model.Campesino;
-import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.persistence.ProductosEnVentaRepository;
 import java.util.List;
