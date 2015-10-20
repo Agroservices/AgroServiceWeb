@@ -58,6 +58,10 @@ public class ProductosEnVentaRest {
         ProductoEnVenta pe2 = new ProductoEnVenta(c, p, "La mejor papa2", fecha, 60, 1000);
         ProductoEnVenta pe3 = new ProductoEnVenta(c, p, "La mejor papa3", fecha, 60, 1000);
         
+        pe1.setIdProductosEnVenta(1);
+        pe2.setIdProductosEnVenta(2);
+        pe3.setIdProductosEnVenta(3);
+        
         productos.add(pe1);
         productos.add(pe2);
         productos.add(pe3);

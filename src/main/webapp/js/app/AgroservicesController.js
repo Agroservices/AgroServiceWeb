@@ -5,11 +5,24 @@
         
         
         $scope.idCampesino=0;
-        $scope.productos; 
+        $scope.productos = AgroservicesRestAPI.getProductosConsultaCompra().success(function(data, status,headers, config){
+                $scope.productos = data;
+                //alert(angular.toJson(data));
+            });
+            
         $scope.idProductoConsulta;
         $scope.cantidadConsulta;
         $scope.productosEnVenta;
         $scope.sumaId;
+        $scope.ProductoEnVenta;
+        $scope.costoCompra = 0;
+        
+        //Variables que contiene la informacion de la tarjeta
+        
+        $scope.numeroTarjeta;
+        $scope.codigoTarjeta;
+        $scope.mesVencimiento;
+        $scope.añoVencimiento;
         
         
         $scope.ventasPorCampesino = function (){
@@ -38,9 +51,19 @@
             $scope.sumaId = $scope.idProductoConsulta.toString() + "-" + $scope.cantidadConsulta;
             //alert($scope.sumaId);
             $scope.productosEnVenta = AgroservicesRestAPI.getProductosEnVentaConsulta().success(function(data, status,headers, config){
+                //alert(angular.toJson(data));
                 $scope.productosEnVenta = data;
                 
             });
+            
+            
+            
+        };
+        
+        $scope.setProductoEnVentaSeleccionado = function(productoEnVenta){
+            //alert(idProductoEnVenta);
+            $scope.ProductoEnVenta = productoEnVenta;
+            $scope.costoCompra = $scope.cantidadConsulta * $scope.ProductoEnVenta.precioPorKg;
             
         };
         

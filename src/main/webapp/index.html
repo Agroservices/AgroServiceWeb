@@ -237,7 +237,7 @@
             
             <!-- formulario consulta -->
             
-            <div>
+            <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <label>Productos :</label>
                     <select ng-model="idProductoConsulta">
@@ -247,13 +247,15 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <input type="text" placeholder="Cantidad deseada" ng-model="cantidadConsulta" class="form-control" />
                 </div>
-                <div>
+                
+                <div class="col-lg-8 col-lg-offset-2">
                     <button class="btn btn-primary" ng-click="getProductosEnventa()"> Consultar</button>
                 </div>
             </div>
             
             <!-- Tabla que muestra la informacion de los productos en venta para su seleccion -->
             
+            <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <table class="table table-condensed table-bordered table-hover">
                     <thead>
@@ -263,7 +265,7 @@
                         <th>Precio por kg</th>
                     </thead>                    
                     <tbody>
-                        <tr ng-repeat="prodEV in productosEnVenta" >
+                        <tr ng-repeat="prodEV in productosEnVenta" ng-click="setProductoEnVentaSeleccionado(prodEV)">
                             <td>{{prodEV.descripcion}}</td>
                             <td>{{prodEV.fechaCosecha}}</td>
                             <td>{{prodEV.cantidadDisponible}}</td>
@@ -272,47 +274,74 @@
                     </tbody>
                 </table>
             </div>
+            </div>
+                                  
             
-            <!-- Formulario por defecto de la plantilla-->
+            <!-- Formulario para la compra del producto selecciado-->
             
+            <div class="row">
+                <h3 class="col-lg-8 col-lg-offset-2">Compra producto.</h3>
+            </div>
+
+            <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <table class="table table-condensed table-bordered table-hover">
+                    <thead>
+                        <th>Producto:</th>
+                        <th>{{ProductoEnVenta.descripcion}}</th>
+                        <td>Cantidad:</td>
+                        <th>{{cantidadConsulta}}</th>
+                        <th>Precio por kg</th>
+                        <th>{{ProductoEnVenta.precioPorKg}}</th>
+                        <th>Costo total:</th>
+                        <th>{{costoCompra}}</th>
+                    </thead>                    
+                </table>
+            </div>
+            </div>            
+                                  
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" novalidate>
+                        
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                                <label>Tarjeta</label>
+                                <input type="number" class="form-control" placeholder=" Número Targeta " id="tarjeta" required data-validation-required-message="Ingrese el nímero de tarjeta.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                        
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                                <label>CodigoTarjeta</label>
+                                <input type="number" class="form-control" placeholder="Número Tarjeta" id="codigo" required data-validation-required-message="Ingrese el código de la tarjeta.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                        
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <label>Mes vencimineto</label>
+                                <input type="number" class="form-control" placeholder="Mes vencimiento" id="mes" required data-validation-required-message="Ingrese el mes de vencimiento de la tarjeta.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                        
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <label>Año vencimiento</label>
+                                <input type="number" class="form-control" placeholder="Año vencimiento" id="año" required data-validation-required-message="Ingrese el año de vencimiento.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <br>
-                        <div id="success"></div>
+                        <div id="comprar"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                <button type="submit" class="btn btn-success btn-lg">Comprar</button>
                             </div>
                         </div>
                     </form>
