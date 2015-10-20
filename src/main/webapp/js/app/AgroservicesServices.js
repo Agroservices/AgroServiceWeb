@@ -18,6 +18,10 @@
         this.getProductosEnVentaConsulta = function(id){
             return $http.get('http://localhost:8080/agroservices28_09_15/rest/productosEnVenta/'+id);
         };
+        
+        this.validarInformacionTarjeta = function (tarjeta){
+           return $http.post('http://localhost:8080/agroservices28_09_15/rest/compras/tarjetaValidacion/',tarjeta);
+        };
     }
     );
 

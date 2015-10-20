@@ -16,6 +16,7 @@ public class informacionTarjeta {
     private int mesVencimiento;
     private int añoVencimiento;
     
+    
     /**
      * Creador de la clase informacionTarjeta
      * @param numero

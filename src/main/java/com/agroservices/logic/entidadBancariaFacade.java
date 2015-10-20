@@ -19,21 +19,22 @@ public class entidadBancariaFacade {
     public boolean validarTarjeta(informacionTarjeta tarjeta){
         
         Date fecha = new Date();
-        boolean resultado = true;
+        boolean respuesta = true;
+        
         
         if(tarjeta.getNumero()%2!=0){
-            resultado = false;
+            respuesta = false;
         }
         
         if(tarjeta.getAñoVencimiento()>=(fecha.getYear()+1900)){
-            resultado = false;
+            respuesta = false;
         }
         
         if(tarjeta.getMesVencimiento()>=(fecha.getMonth()+1)){
-            resultado = false;
+            respuesta = false;
         }
         
-        return resultado;
+        return respuesta;
     }
     
 }
