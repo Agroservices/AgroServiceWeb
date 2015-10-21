@@ -26,7 +26,7 @@ public class entidadBancariaFacade {
             respuesta = false;
         }
         
-        if(tarjeta.getAñoVencimiento()>=(fecha.getYear()+1900)){
+        if(tarjeta.getAnoVencimiento()>=(fecha.getYear()+1900)){
             respuesta = false;
         }
         

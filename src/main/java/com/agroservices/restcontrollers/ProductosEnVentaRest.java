@@ -43,30 +43,37 @@ public class ProductosEnVentaRest {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public List<ProductoEnVenta> getConsultaProductosEVProductoCantidad(@PathVariable String id){
         
-//        String elementoDivisor = "-";
-//        String[] valores = id.split(elementoDivisor);//  0: producto 1:cantidad
-//        
-//        Producto p = pf.getProducto(Integer.parseInt(valores[0]));
-//        List<ProductoEnVenta> productos = pef.getProductosEnVentaConsulta(p.getIdProductos(), Integer.parseInt(valores[1]));
+        String elementoDivisor = "-";
+        String[] valores = id.split(elementoDivisor);//  0: producto 1:cantidad
+        
+        Producto p1 = pf.getProducto(Integer.parseInt(valores[0]));
+        List<ProductoEnVenta> productos2 = pef.getProductosEnVentaConsulta(p1.getIdProductos(),(float)Integer.parseInt(valores[1]));
+//        try{
+//            List<ProductoEnVenta> productos2 = pef.getProductosEnVentaConsulta(p1.getIdProductos(),(float) Integer.parseInt(valores[1]) );
+//        }catch(Exception ex){
+//            System.out.println(ex.getCause());
+//            return pef.getProductos();
+//        }
 
-        List<ProductoEnVenta> productos = new ArrayList<>(0);
-        Ubicacion u = new Ubicacion("a", "a", "a", "a", "a");
-        Campesino c = new Campesino(1, u, "Andres", "Melo", "018000");
-        Producto p = new Producto("Papita", 12, true);
-        Date fecha = new Date(114, 2, 12);
-        ProductoEnVenta pe1 = new ProductoEnVenta(c, p, "La mejor papa", fecha, 60, 1000);
-        ProductoEnVenta pe2 = new ProductoEnVenta(c, p, "La mejor papa2", fecha, 60, 1000);
-        ProductoEnVenta pe3 = new ProductoEnVenta(c, p, "La mejor papa3", fecha, 60, 1000);
-        
-        pe1.setIdProductosEnVenta(1);
-        pe2.setIdProductosEnVenta(2);
-        pe3.setIdProductosEnVenta(3);
-        
-        productos.add(pe1);
-        productos.add(pe2);
-        productos.add(pe3);
+//        List<ProductoEnVenta> productos = new ArrayList<>(0);
+//        Ubicacion u = new Ubicacion("a", "a", "a", "a", "a");
+//        Campesino c = new Campesino(1, u, "Andres", "Melo", "018000");
+//        Producto p = new Producto("Papita", 12, true);
+//        Date fecha = new Date(114, 2, 12);
+//        ProductoEnVenta pe1 = new ProductoEnVenta(c, p, "La mejor papa", fecha, 60, 1000);
+//        ProductoEnVenta pe2 = new ProductoEnVenta(c, p, "La mejor papa2", fecha, 60, 1000);
+//        ProductoEnVenta pe3 = new ProductoEnVenta(c, p, "La mejor papa3", fecha, 60, 1000);
+//        
+//        pe1.setIdProductosEnVenta(1);
+//        pe2.setIdProductosEnVenta(2);
+//        pe3.setIdProductosEnVenta(3);
+//        
+//        productos.add(pe1);
+//        productos.add(pe2);
+//        productos.add(pe3);
        
-        return productos;
+        return productos2;
+        //return pef.getProductos();
         
     }
     

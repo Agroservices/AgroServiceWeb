@@ -22,7 +22,10 @@ public interface ProductosEnVentaRepository extends CrudRepository<ProductoEnVen
     
     //Seleccion de los productos en venta segun un producto y la cantidad deseada
     
-    @Query("SELECT pev FROM ProductoEnVenta pev WHERE pev.productos.idProductos =:idProd AND pev.cantidadDisponible=:cantidad")
-    public List<ProductoEnVenta> productosEnVentaPorCantidadProducto(@Param("idProd")Integer idProducto, @Param("cantidad") Integer cantidad);
+    @Query("SELECT pev FROM ProductoEnVenta pev WHERE  pev.productos.idProductos = :idProducto  AND pev.cantidadDisponible >= :cantidad")
+    public List<ProductoEnVenta> productosEnVentaPorCantidadProducto(@Param("idProducto")Integer idProducto , @Param("cantidad") float cantidad);
+    
+    @Query("SELECT pev FROM ProductoEnVenta pev")
+    public List<ProductoEnVenta> getProductosEnVenta();
     
 }

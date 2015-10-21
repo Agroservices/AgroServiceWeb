@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('AgroservicesControl', ['ngRoute','AgroservicesServices']);
         
-    app.controller('agroservicescontroller', function ($scope,$location,AgroservicesRestAPI) {
+    app.controller('agroservicescontroller', function ($scope,$location,$log,AgroservicesRestAPI) {
         
         
         $scope.idCampesino=0;
@@ -22,8 +22,10 @@
         $scope.numeroTarjeta;
         $scope.codigoTarjeta;
         $scope.mesVencimiento;
-        $scope.añoVencimiento;
+        $scope.anoVencimiento;
         $scope.informacionTarjeta;
+        
+        $scope.tarjeta;
         
         
         $scope.ventasPorCampesino = function (){
@@ -51,7 +53,7 @@
         $scope.getProductosEnventa = function(){
             $scope.sumaId = $scope.idProductoConsulta.toString() + "-" + $scope.cantidadConsulta;
             //alert($scope.sumaId);
-            $scope.productosEnVenta = AgroservicesRestAPI.getProductosEnVentaConsulta().success(function(data, status,headers, config){
+            $scope.productosEnVenta = AgroservicesRestAPI.getProductosEnVentaConsulta($scope.sumaId).success(function(data, status,headers, config){
                 //alert(angular.toJson(data));
                 $scope.productosEnVenta = data;
                 
@@ -73,13 +75,31 @@
         $scope.realizarCompra = function(){
             //{"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016}
             this.respuesta;
-            $scope.informacionTarjeta = {"numero":'+$scope.numeroTarjeta+',"codigo":'+$scope.codigoTarjeta+',"mesVencimiento":'+$scope.mesVencimiento+',"añoVencimiento":'+$scope.añoVencimiento+'};
-            AgroservicesRestAPI.validarInformacionTarjeta().success(function(data, status,headers, config){
+            
+            $scope.informacionTarjeta = {numero:$scope.numeroTarjeta,codigo:$scope.codigoTarjeta,mesVencimiento:$scope.mesVencimiento,anoVencimiento:$scope.anoVencimiento}
+            
+//            $scope.informacionTarjeta = {numero:$scope.numeroTarjeta};
+//            $scope.informacionTarjeta = {codigo:$scope.codigoTarjeta};
+//            $scope.informacionTarjeta = {mesVencimiento:$scope.mesVencimiento};
+//            $scope.informacionTarjeta = {añoVencimiento:$scope.anoVencimiento};
+
+            $scope.tarjeta = AgroservicesRestAPI.getTarjeta().success(function(data, status,headers, config){
+                $scope.tarjeta = data;
+                alert(angular.toJson(data));
+            });
+            
+            $log.log($scope.tarjeta);
+            
+            $scope.informacionTarjeta = {"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016};
+            AgroservicesRestAPI.validarInformacionTarjeta($scope.tarjeta).success(function(data, status,headers, config){
                 alert("Informacion tarjeta correcta");
                 //this.respuesta = data;
-                //alert(angular.toJson(data));
+                alert(angular.toJson(data));
                 
-            });
+            }).error(function(data,status,header,config){
+                        //$log.log("Post fail");
+                        //$log.log(data+" "+status);
+                    });
         };
         
     }

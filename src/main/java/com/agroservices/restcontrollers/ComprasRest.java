@@ -52,7 +52,7 @@ public class ComprasRest {
         
     }
     
-    @RequestMapping(value = "/tarjeta/",method = RequestMethod.GET)
+    @RequestMapping(value = "/tarjetaValidacion/",method = RequestMethod.GET)
     public informacionTarjeta getTarjeta(){
         return new  informacionTarjeta(12345, 123, 1, 2016);
     }

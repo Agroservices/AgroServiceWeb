@@ -14,7 +14,7 @@ public class informacionTarjeta {
     private int numero;
     private int codigo;
     private int mesVencimiento;
-    private int añoVencimiento;
+    private int anoVencimiento;
     
     
     /**
@@ -22,15 +22,16 @@ public class informacionTarjeta {
      * @param numero
      * @param codigo
      * @param mesVencimiento
-     * @param añoVencimiento 
+     * @param anoVencimiento 
      */
-    public informacionTarjeta(int numero, int codigo, int mesVencimiento, int añoVencimiento){
+    public informacionTarjeta(int numero, int codigo, int mesVencimiento, int anoVencimiento){
         this.numero = numero;
         this.codigo = codigo;
         this.mesVencimiento = mesVencimiento;
-        this.añoVencimiento = añoVencimiento;
+        this.anoVencimiento = anoVencimiento;
     }
     
+    public informacionTarjeta(){}
     /**
      * 
      * Setters and getters de la clase 
@@ -60,12 +61,12 @@ public class informacionTarjeta {
         this.mesVencimiento = mesVencimiento;
     }
 
-    public int getAñoVencimiento() {
-        return añoVencimiento;
+    public int getAnoVencimiento() {
+        return anoVencimiento;
     }
 
-    public void setAñoVencimiento(int añoVencimiento) {
-        this.añoVencimiento = añoVencimiento;
+    public void setAnoVencimiento(int añoVencimiento) {
+        this.anoVencimiento = añoVencimiento;
     }
     
     

@@ -6,8 +6,10 @@
 package com.agroservices.logic;
 
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.persistence.ProductosEnVentaRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +39,25 @@ public class ProductosEnVentaFacade {
     
     
     
-    public List<ProductoEnVenta> getProductosEnVentaConsulta(int idProducto, int cantidad){
+    public List<ProductoEnVenta> getProductosEnVentaConsulta(int idProducto, float cantidad){
         
         return pr.productosEnVentaPorCantidadProducto(idProducto, cantidad);
+        
+        
+        
+    }
+    
+    public List<ProductoEnVenta> getProductos(){
+        
+        List<ProductoEnVenta> productosEnVenta = new ArrayList<>();
+        Iterable<ProductoEnVenta> iter = pr.findAll();
+        
+        for(ProductoEnVenta p: iter){
+            productosEnVenta.add(p);
+        }
+        
+        //return productosEnVenta;
+        return pr.getProductosEnVenta();
         
     }
 }
