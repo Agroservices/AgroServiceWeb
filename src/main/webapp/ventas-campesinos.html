@@ -1,0 +1,48 @@
+    <!-- About Section -->
+    <div  ng-controller="agroservicescontroller">
+        
+        <div class="container">
+                <div class="col-lg-12 text-center">
+                    <h2>Consultar ventas</h2>
+                    <hr class="star-light">
+                </div>              
+        </div>
+                                    
+        <div class="row">
+            <menu-campesinos></menu-campesinos>
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>Cedula del campesino</label>
+                    <input type="text" ng-model="idCampesino" class="form-control" id="idCampesino" placeholder="C.C">
+                    <button class="btn btn-primary" ng-click="ventasPorCampesino()"> Consultar por C.C</button>
+                    <button class="btn btn-primary" ng-click="totalVentas()"> Consultar todas las ventas</button>
+                </div>
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Codigo de venta</th>
+                            <th>Nombre del producto</th>
+                            <th>Cantidad(Kg)</th>
+                            <th>Pago(COP)</th>
+                        </tr>                
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="venta in ventas">
+                            <td>
+                                {{venta.idVentas}}
+                            </td>
+                            <td >
+                                {{venta.productosEnVenta.productos.nombre}}
+                            </td>
+                            <td >
+                                {{venta.productosEnVenta.cantidadDisponible}}
+                            </td>
+                            <td>
+                                {{venta.productosEnVenta.precioPorKg*venta.productosEnVenta.cantidadDisponible}}
+                            </td>        
+                        </tr>                 
+                    </tbody>
+                </table>                  
+            </div>
+        </div>
+    </div>

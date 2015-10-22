@@ -74,32 +74,20 @@
         
         $scope.realizarCompra = function(){
             //{"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016}
-            this.respuesta;
             
-            $scope.informacionTarjeta = {numero:$scope.numeroTarjeta,codigo:$scope.codigoTarjeta,mesVencimiento:$scope.mesVencimiento,anoVencimiento:$scope.anoVencimiento}
+            $scope.idTransaccion;
             
-//            $scope.informacionTarjeta = {numero:$scope.numeroTarjeta};
-//            $scope.informacionTarjeta = {codigo:$scope.codigoTarjeta};
-//            $scope.informacionTarjeta = {mesVencimiento:$scope.mesVencimiento};
-//            $scope.informacionTarjeta = {añoVencimiento:$scope.anoVencimiento};
-
-            $scope.tarjeta = AgroservicesRestAPI.getTarjeta().success(function(data, status,headers, config){
-                $scope.tarjeta = data;
-                alert(angular.toJson(data));
-            });
-            
-            $log.log($scope.tarjeta);
-            
-            $scope.informacionTarjeta = {"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016};
-            AgroservicesRestAPI.validarInformacionTarjeta($scope.tarjeta).success(function(data, status,headers, config){
-                alert("Informacion tarjeta correcta");
-                //this.respuesta = data;
-                alert(angular.toJson(data));
-                
-            }).error(function(data,status,header,config){
-                        //$log.log("Post fail");
-                        //$log.log(data+" "+status);
+            AgroservicesRestAPI.validarInformacionTarjeta($scope.numeroTarjeta,$scope.codigoTarjeta,$scope.mesVencimiento,$scope.anoVencimiento).success(                    
+                    function(data,status,header,config){
+                        $log.log("Post exitoso");
+                        $scope.idTransaccion = data;
+                    }).error(function(data,status,header,config){
+                        $log.log("Post fail");
+                        $log.log(data+" "+status);
                     });
+                    
+            
+            
         };
         
     }

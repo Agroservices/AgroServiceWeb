@@ -1,9 +1,14 @@
 <div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl" ng-submit="fichaTecnica.$valid && enviarProductoEnVenta()">
 
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <h2>Ficha Técnica del Producto</h2>
+            <hr class="star-light">
+        </div>              
+    </div>
     <menu-campesinos></menu-campesinos>
     <div class="col-md-9">
-        <h1>Ficha Técnica de Producto</h1>
-        <form name="fichaTecnica" novalidate>
+        <form name="fichaTecnica" ng-submit="fichaTecnica.$valid && enviarProductoEnVenta()" novalidate>
             <div class="form-group">
                 <label for="selected">Producto</label>
                 <select ng-model="productoEnVenta.productos" id="selected" requiered class="form-control">
@@ -34,5 +39,5 @@
             <input type="submit" value="Enviar"/>
         </form>        
     </div>
-    {{fichaTecnica.$valid}}    
+        
 </div>

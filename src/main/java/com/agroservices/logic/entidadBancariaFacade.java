@@ -21,16 +21,20 @@ public class entidadBancariaFacade {
         Date fecha = new Date();
         boolean respuesta = true;
         
-        
         if(tarjeta.getNumero()%2!=0){
+            System.out.println("Numero tarjeta: "+tarjeta.getNumero()+" Modulo: "+tarjeta.getNumero()%2);
             respuesta = false;
         }
         
-        if(tarjeta.getAnoVencimiento()>=(fecha.getYear()+1900)){
+        if(tarjeta.getAnoVencimiento()<(fecha.getYear()+1900)){
+            
+            System.out.println("Año tarjeta: "+tarjeta.getAnoVencimiento()+" Año de la fecha: "+fecha.getYear()+1900);
             respuesta = false;
         }
         
-        if(tarjeta.getMesVencimiento()>=(fecha.getMonth()+1)){
+        if(tarjeta.getMesVencimiento()<(fecha.getMonth()+1) && (tarjeta.getAnoVencimiento()==(fecha.getYear()+1900))){
+            
+            System.out.println("mes tarjeta: "+tarjeta.getMesVencimiento()+" Modulo: "+fecha.getMonth()+1);
             respuesta = false;
         }
         

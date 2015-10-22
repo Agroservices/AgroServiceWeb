@@ -7,6 +7,7 @@ package com.agroservices.logic;
 
 import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
+import com.agroservices.persistence.FacturasRepository;
 import com.agroservices.persistence.ProductosEnVentaRepository;
 import com.agroservices.persistence.ProductosRepository;
 import java.util.List;
@@ -26,6 +27,11 @@ public class ComprasFacade {
     
     @Autowired
     ProductosRepository pr;
+    
+    @Autowired
+    FacturasRepository fr;
+    
+    
     
     
     
