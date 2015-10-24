@@ -4,20 +4,20 @@
     app.service('AgroservicesRestAPI', function ($http) {
         
         this.getVentas = function () {
-            return $http.get('/agroservices28_09_15/rest/ventas/');
+            return $http.get('/rest/ventas/');
         };
         
         this.getVentasByCampesino = function (id) {
-            return $http.get('/agroservices28_09_15/rest/ventas/'+id);
+            return $http.get('/rest/ventas/'+id);
         };
         
         this.getProductosConsultaCompra = function(){
-            return $http.get('/agroservices28_09_15/rest/productos/');
+            return $http.get('/rest/productos/');
         };
         
         this.getProductosEnVentaConsulta = function(id){
             //alert(id);
-            return $http.get('/agroservices28_09_15/rest/productosEnVenta/'+id);
+            return $http.get('/rest/productosEnVenta/'+id);
         };
         
 
@@ -26,23 +26,23 @@
             var tarjeta = {"numero":numeroTar,"codigo":codigoTar,"mesVencimiento":mesTar,"anoVencimiento":anoTar};
             return $http({
                 method: 'POST',
-                url: '/agroservices28_09_15/rest/compras/tarjetaValidacion/',
+                url: '/rest/compras/tarjetaValidacion/',
                 data: tarjeta
             });
 
         };
         
         this.getTarjeta = function (){
-           return $http.get('/agroservices28_09_15/rest/compras/tarjetaValidacion/');
+           return $http.get('/rest/compras/tarjetaValidacion/');
         };
 
         this.postProductosEnVenta = function(productoEnVenta,idCampesino){
-            return $http.post('/agroservices28_09_15/rest/campesinos/'+idCampesino+'/productosEnVenta'
+            return $http.post('/rest/campesinos/'+idCampesino+'/productosEnVenta'
             ,productoEnVenta);
         };
         
         this.getProductosEnVentaPorCampesino = function(idCampesino){
-            return $http.get('/agroservices28_09_15/rest/campesinos/'+idCampesino+'/productosEnVenta');
+            return $http.get('/rest/campesinos/'+idCampesino+'/productosEnVenta');
         };
     }
     );

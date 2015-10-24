@@ -130,7 +130,7 @@
                 <configuration>
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/agroservices28_09_15</contextPath>
+                        <contextPath></contextPath>
                     </webApp>                    
                 </configuration>
             </plugin>
