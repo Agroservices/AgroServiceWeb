@@ -1,9 +1,8 @@
 deployment:
   staging:
     branch: master
-    heroku: 
+    heroku:
       appname: agroservices
-	  
 test:
   post:
     - mvn site
