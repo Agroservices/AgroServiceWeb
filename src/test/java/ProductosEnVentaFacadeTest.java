@@ -51,13 +51,13 @@ public class ProductosEnVentaFacadeTest {
     // @Test
     // public void hello() {}
     @Test
-    public void almacenarProductosEnVenta(){
+    public void almacenarProductosEnVentaTest(){
         //Almacenar un campesino con su ubicacion
         Ubicacion u1 = new Ubicacion("Calle 160 # 36 - 45", "Chia", "Cundinamarca", "50", "50");
         Campesino c1 = new Campesino(123456789, u1, "Pedro Nel", "Sanchez Carrasquilla", "4559875");
         cf.guardarCampesino(c1);
         //Almacenar un producto que sera la categoria de los productos en venta a agregar
-        Producto p1 = new Producto("Arroz", 36, true);
+        Producto p1 = new Producto("Arroz Integral", 36, true);
         try {
             pf.saveProducto(p1);
         } catch (OperationFailedException ex) {

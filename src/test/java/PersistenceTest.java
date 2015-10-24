@@ -70,7 +70,7 @@ public class PersistenceTest {
     }
            
     @Test
-    public void consultarRutasAsignadas(){
+    public void consultarRutasAsignadasTest(){
         
         Transaction tx=session.beginTransaction();
         /*******************************************************************
@@ -264,7 +264,7 @@ public class PersistenceTest {
     
     //Prueba de la consulta productoPorFechaDespacho
     @Test
-    public void consultaProductoPorFechaDespacho(){
+    public void consultaProductoPorFechaDespachoTest(){
         
         //Poblacion de la base de datos
         

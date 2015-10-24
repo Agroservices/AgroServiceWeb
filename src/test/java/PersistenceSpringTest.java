@@ -45,7 +45,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContextH2.xml"})
-public class PersistenceTestSpring {
+public class PersistenceSpringTest {
     
     @Autowired
     ProductosRepository pr;
@@ -81,7 +81,7 @@ public class PersistenceTestSpring {
     DespachosRepository dr;
     
     @Test
-    public void simulacionCompra(){
+    public void simulacionCompraTest(){
         /*******************************************************************
         CREACION DE LOS PRODUCTOS
         ********************************************************************/

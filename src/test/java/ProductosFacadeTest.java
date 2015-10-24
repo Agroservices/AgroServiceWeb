@@ -63,7 +63,7 @@ public class ProductosFacadeTest {
     // @Test
     // public void hello() {}
     @Test
-    public void almacenarProductos(){
+    public void almacenarProductosTest(){
         try {
             Producto producto1 = new Producto("Papa criolla", 30 , false);
             Producto producto2 = new Producto("Tomate", 10 , true);
@@ -100,7 +100,7 @@ public class ProductosFacadeTest {
     }
     
     @Test
-    public void probarArrojarLaOperationFailedEXception(){
+    public void probarArrojarLaOperationFailedEXceptionTest(){
         try {
             Producto p1 = new Producto("Arroz", 90, false);
             Producto p2 = new Producto("Arroz", 30, false);
@@ -113,7 +113,7 @@ public class ProductosFacadeTest {
     }
     
     @Test
-    public void registrarVenta(){
+    public void registrarVentaTest(){
         
         try{
         /*******************************************************************
