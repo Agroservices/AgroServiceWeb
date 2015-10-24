@@ -10,6 +10,7 @@ import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.persistence.CampesinosRepository;
 import com.agroservices.persistence.UbicacionesRepository;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,10 @@ public class CampesinosFacade {
     
     public Campesino getCampesinoPorId(int idCampesino){
         return cr.findOne(idCampesino);
+    }
+    
+    public List<ProductoEnVenta> getProductosEnVenta(int idCampesino){
+        return pvf.getProductosEnVentaPorCampesino(idCampesino);
     }
     
 }

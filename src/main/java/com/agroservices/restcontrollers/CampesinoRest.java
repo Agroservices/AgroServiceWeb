@@ -9,6 +9,7 @@ import com.agroservices.logic.CampesinosFacade;
 import com.agroservices.model.Campesino;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ubicacion;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class CampesinoRest {
     
     @Autowired
     CampesinosFacade cf;
-    
+            
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public Campesino consultarCliente()throws OperationFailedException{
         Ubicacion u = new Ubicacion("direccion", "Cajica", "Cdnm", "70", "80");
@@ -62,8 +63,8 @@ public class CampesinoRest {
     }
     
     @RequestMapping(value="/{id}/productosEnVenta", method = RequestMethod.GET)
-    public Campesino getCampesino(@PathVariable int id){
-        return cf.getCampesinoPorId(id);
+    public List<ProductoEnVenta> getProductosEnVenta(@PathVariable int id){
+        return cf.getProductosEnVenta(id);
     }
     
     

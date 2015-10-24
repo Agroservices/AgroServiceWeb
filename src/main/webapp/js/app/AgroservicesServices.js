@@ -41,7 +41,9 @@
             ,productoEnVenta);
         };
         
-
+        this.getProductosEnVentaPorCampesino = function(idCampesino){
+            return $http.get('/agroservices28_09_15/rest/campesinos/'+idCampesino+'/productosEnVenta');
+        };
     }
     );
 

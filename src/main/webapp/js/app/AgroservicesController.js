@@ -136,6 +136,29 @@
         
     });
     
+    app.controller('verFichaTecnicaCtrl',function($scope,$log,AgroservicesRestAPI){
+        
+        $scope.productosEnVenta = [];
+        
+        $scope.campesino = {idCampesino:123456789};
+        
+        $scope.haSeleccionadoProducto = false;
+        
+        $scope.productoEnVenta = {};
+        
+        $scope.productoEnVentaPromise = AgroservicesRestAPI.getProductosEnVentaPorCampesino($scope.campesino.idCampesino)
+                .success(function(data,status,header,config){
+                    $log.log(data);
+                    $scope.productosEnVenta = data;
+                });
+        
+        $scope.seleccionoProducto = function(productoSeleccionado){
+            $scope.productoEnVenta = productoSeleccionado;
+            $scope.haSeleccionadoProducto = true;
+        };
+        
+    });    
+    
     app.config(function($routeProvider){
         $routeProvider
                 .when('/campesinos',{
@@ -146,6 +169,12 @@
                 })
                 .when('/fichatecnica',{
                     templateUrl: 'ficha-tecnica.html'
+                })
+                .when('/verfichastecnicas',{
+                    templateUrl: 'ver-ficha-tecnica.html'
+                })
+                .when('/ventascampesinos',{
+                    templateUrl: 'ventas-campesinos.html'
                 });
     });
 
