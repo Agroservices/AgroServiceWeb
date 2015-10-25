@@ -44,6 +44,10 @@
         this.getProductosEnVentaPorCampesino = function(idCampesino){
             return $http.get('/rest/campesinos/'+idCampesino+'/productosEnVenta');
         };
+        
+        this.postProducto = function(producto){
+          return $http.post('/rest/productos/',producto);  
+        };
     }
     );
 

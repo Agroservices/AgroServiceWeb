@@ -1,4 +1,4 @@
-<div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl" ng-submit="fichaTecnica.$valid && enviarProductoEnVenta()">
+<div class="row" ng-controller="fichaTecnicaCtrl as fichaCtrl">
 
     <div class="container">
         <div class="col-lg-12 text-center">
@@ -10,14 +10,21 @@
     <div class="col-md-9">
         <form name="fichaTecnica" ng-submit="fichaTecnica.$valid && enviarProductoEnVenta()" novalidate>
             <div class="form-group">
+                <label for="IdCampesino">ID Campesino</label>
+                <input type="number" ng-model="campesino.idCampesino" class="form-control" required id="IdCampesino"
+                       placeholder="Identificación Campesino"/>
+            </div>
+            <div class="form-group">
                 <label for="selected">Producto</label>
                 <select ng-model="productoEnVenta.productos" id="selected" requiered class="form-control">
                     <option ng-repeat="producto in productos" value='{{producto.nombre}}'>{{producto.nombre}}</option>
                 </select>
-            </div>
+            </div>                        
+                <label for="pregunta">¿No encuentra su producto?</label>
+                <input type="checkbox" ng-model="noHayProducto" class="form-control" id="pregunta"/>                   
             <div class="form-group">
                 <label for="fecha">Fecha Cosecha</label>
-                <input type="date" ng-model="productoEnVenta.fechaCosecha" class="form-control" required=""
+                <input type="date" ng-model="productoEnVenta.fechaCosecha" class="form-control" required
                        id="fecha" placeholder="dd-mm-yyyy"/>
             </div>
             <div class="form-group">
@@ -37,7 +44,27 @@
             </div> 
                                     
             <input type="submit" value="Enviar"/>
-        </form>        
+        </form>      
+        <div ng-show="noHayProducto">
+            <h2>Formulario Creación de Productos</h2>
+            <form name="productoFicha" novalidate ng-submit="productoFicha.$valid && enviarProducto()">
+                <div class="form-group">            
+                    <label for="nombre">Nombre del Producto</label>
+                    <input type="text" ng-model="producto.nombre" class="form-control" required id="nombre"
+                           ng-app=""placeholder="Nombre Producto"/>
+                </div>        
+                <div class="form-group">            
+                    <label for="duracion">Duración del Producto</label>
+                    <input type="text" ng-model="producto.duracion" class="form-control" required id="duracion"
+                       placeholder="Duracion Producto"/>
+                </div>        
+            <div class="form-group">            
+                <label for="refrigeracion">¿Necesita refrigeración?</label>
+                <input type="checkbox" ng-model="producto.refrigeracion" class="form-control" id="refrigeracion"/>
+            </div>  
+                <input type="submit" value="Enviar"/>                
+            </form>              
+        </div>        
     </div>
         
 </div>

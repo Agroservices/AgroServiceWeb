@@ -110,7 +110,31 @@
                
         $scope.productoEnVenta = {};
         
-        $scope.campesino = {idCampesino:123456789};
+        $scope.campesino = {};
+        
+        $scope.noHayProducto = false;
+
+        $scope.producto = {};
+        
+        $scope.enviarProducto = function(){
+            $log.log("Enviar Producto");
+            $scope.productoPromise = AgroservicesRestAPI.postProducto($scope.producto)
+                  .success(function(data,status,header,config){
+                      $log.log("Post de Producto Exitoso");
+                      $scope.productosPromise = AgroservicesRestAPI.getProductosConsultaCompra();
+        
+                      $scope.productosPromise.then(
+                              function(response){                    
+                                  $scope.productos = response.data;
+                                  $log.log($scope.productos);
+                              },function(){
+                                  $log.log("No se logro acceder al API de productos");
+                              }
+                                      );              
+                  }).error(function(data,status,header,config){
+                      $log.log("Post Producto Fail");
+                  });
+        };
         
         $scope.enviarProductoEnVenta = function(){
             $scope.productoEnVenta.campesinos = {};
@@ -140,24 +164,25 @@
         
         $scope.productosEnVenta = [];
         
-        $scope.campesino = {idCampesino:123456789};
-        
-        $scope.haSeleccionadoProducto = false;
+        $scope.campesino = {};                
         
         $scope.productoEnVenta = {};
         
-        $scope.productoEnVentaPromise = AgroservicesRestAPI.getProductosEnVentaPorCampesino($scope.campesino.idCampesino)
+        $scope.buscarProductosEnVenta = function(){
+          $scope.productoEnVentaPromise = AgroservicesRestAPI.getProductosEnVentaPorCampesino($scope.campesino.idCampesino)
                 .success(function(data,status,header,config){
                     $log.log(data);
                     $scope.productosEnVenta = data;
-                });
-        
-        $scope.seleccionoProducto = function(productoSeleccionado){
-            $scope.productoEnVenta = productoSeleccionado;
-            $scope.haSeleccionadoProducto = true;
+                });          
         };
-        
+                        
     });    
+    
+    app.controller('productoCtrl',function($scope,$log,AgroservicesRestAPI){
+        
+
+        
+    });
     
     app.config(function($routeProvider){
         $routeProvider
@@ -182,6 +207,13 @@
        return{
           restrict:'E',
           templateUrl: 'directives/menu-campesinos.html'
+       } ;
+    });
+
+    app.directive('formularioProductos',function(){
+       return{
+          restrict:'E',
+          templateUrl: 'directives/formulario-productos.html'
        } ;
     });
 

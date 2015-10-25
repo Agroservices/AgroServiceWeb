@@ -1,0 +1,20 @@
+<div ng-controller="productoCtrl as producto">
+    <h2>Formulario Creación de Productos</h2>
+    <form name="productoFicha" novalidate ng-submit="productoFicha.$valid && enviarProducto()">
+        <div class="form-group">            
+            <label for="nombre">Nombre del Producto</label>
+            <input type="text" ng-model="producto.nombre" class="form-control" required id="nombre"
+                   placeholder="Nombre Producto"/>
+        </div>        
+        <div class="form-group">            
+            <label for="duracion">Duración del Producto</label>
+            <input type="text" ng-model="producto.duracion" class="form-control" required id="duracion"
+                   placeholder="Duracion Producto"/>
+        </div>        
+        <div class="form-group">            
+            <label for="refrigeracion">¿Necesita refrigeración?</label>
+            <input type="checkbox" ng-model="producto.refrigeracion" class="form-control" id="refrigeracion"/>
+        </div>  
+        <input type="submit" value="Enviar"/>                
+    </form>        
+</div>
