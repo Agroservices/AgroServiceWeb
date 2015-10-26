@@ -1,2 +1,129 @@
-<h1>Minoristas</h1>
-<p>Los minoristas son los de la platica</p>
+
+<div  ng-controller="agroservicescontroller">
+    
+    <!-- Comprar Section -->
+    <section id="comprar"  class="comprar">
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Minoristas - Compras</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            
+            <!-- formulario consulta -->
+            
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <label>Productos :</label>
+                    <select ng-model="idProductoConsulta" style="color: #000">
+                        <option  ng-repeat="prod in productos" value="{{prod.idProductos}}"  >{{prod.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <input type="text" placeholder="Cantidad deseada" ng-model="cantidadConsulta" class="form-control" />
+                </div>
+                
+                <div class="col-lg-8 col-lg-offset-2">
+                    <button class="btn btn-primary" ng-click="getProductosEnventa()"> Consultar</button>
+                </div>
+            </div>
+            
+            <!-- Tabla que muestra la informacion de los productos en venta para su seleccion -->
+            
+            <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <table class="table table-condensed table-bordered table-hover">
+                    <thead>
+                        <th>Descripción</th>
+                        <th>Fecha Cosecha</th>
+                        <th>Cantidad Disponible</th>
+                        <th>Precio por kg</th>
+                    </thead>                    
+                    <tbody>
+                        <tr ng-repeat="prodEV in productosEnVenta" ng-click="setProductoEnVentaSeleccionado(prodEV)">
+                            <td>{{prodEV.descripcion}}</td>
+                            <td>{{prodEV.fechaCosecha}}</td>
+                            <td>{{prodEV.cantidadDisponible}}</td>
+                            <td>{{prodEV.precioPorKg}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+                                  
+            
+            <!-- Formulario para la compra del producto selecciado-->
+            
+            <div class="row">
+                <h3 class="col-lg-8 col-lg-offset-2">Compra producto.</h3>
+            </div>
+
+            <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <table class="table table-condensed table-bordered table-hover">
+                    <thead>
+                        <th>Producto:</th>
+                        <th>{{ProductoEnVenta.descripcion}}</th>
+                        <td>Cantidad:</td>
+                        <th>{{cantidadConsulta}}</th>
+                        <th>Precio por kg</th>
+                        <th>{{ProductoEnVenta.precioPorKg}}</th>
+                        <th>Costo total:</th>
+                        <th>{{costoCompra}}</th>
+                    </thead>                    
+                </table>
+            </div>
+            </div>            
+                                  
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Tarjeta</label>
+                                <input  type="number" class="form-control" placeholder=" Número Tarjeta " ng-model="numeroTarjeta" id="tarjeta" required data-validation-required-message="Ingrese el nímero de tarjeta.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>CodigoTarjeta</label>
+                                <input  type="number" class="form-control" placeholder="Codigo Tarjeta" ng-model="codigoTarjeta" id="codigo" required data-validation-required-message="Ingrese el código de la tarjeta.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Mes vencimineto</label>
+                                <input  type="number" class="form-control" placeholder="Mes vencimiento" ng-model="mesVencimiento" id="mes" required data-validation-required-message="Ingrese el mes de vencimiento de la tarjeta.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Año vencimiento</label>
+                                <input  type="number" class="form-control" placeholder="Año vencimiento" ng-model="anoVencimiento" id="año" required data-validation-required-message="Ingrese el año de vencimiento.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="comprar"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-primary" ng-click="realizarCompra()" >Comprar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>    
+    
+</div>
