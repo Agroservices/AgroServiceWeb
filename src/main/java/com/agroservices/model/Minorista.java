@@ -99,7 +99,7 @@ public class Minorista  implements java.io.Serializable {
         this.correo = correo;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="minoristas")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="minoristas")
     public Set<Ubicacion> getUbicacioneses() {
         return this.ubicacioneses;
     }

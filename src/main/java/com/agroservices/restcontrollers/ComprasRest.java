@@ -48,9 +48,9 @@ public class ComprasRest {
     entidadBancariaFacade ef;
     
     /**
-     * 
-     * @param elemento
-     * @return 
+     * Método encargado de definir si la información correspindiente a la tarjeta es valida
+     * @param elemento la informacion de la tarjeta que debe ser aprobada 
+     * @return tranBancaria objeto que representa la transccion bancaria correspondiente a la compra
      */
     
     @RequestMapping(value = "/tarjetaValidacion/",method = RequestMethod.POST)
@@ -61,7 +61,9 @@ public class ComprasRest {
         
         if(ef.validarTarjeta(elemento)){
             
-            return new ResponseEntity<>(String.valueOf(elemento.getNumero()*2),HttpStatus.OK);
+            TransaccionBancaria tranBacaria = new TransaccionBancaria("TBOK"+String.valueOf(elemento.getNumero()*2), null);
+            
+            return new ResponseEntity<>(tranBacaria,HttpStatus.OK);
             
         }else{
            return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -69,6 +71,21 @@ public class ComprasRest {
         
     }
     
+    
+    @RequestMapping(value = "/{idMinorista}/{idProductoEnVenta}/{cantidadComprada}",method = RequestMethod.POST)
+    public ResponseEntity<?> agregarCompra(@PathVariable int idMinorista, @PathVariable int idProductoEnVenta, @PathVariable float cantidadComprada ,@RequestBody Factura factura){
+        
+        boolean resultado = cf.agregarFactura(factura, idMinorista, idProductoEnVenta, cantidadComprada);
+        
+        if(resultado){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        
+    }
+    
+    // Métodos de ejemplo
     @RequestMapping(value = "/tarjetaValidacion/",method = RequestMethod.GET)
     public informacionTarjeta getTarjeta(){
         return new  informacionTarjeta(12345, 123, 1, 2016);
@@ -101,6 +118,8 @@ public class ComprasRest {
         
         Set<DetalleFactura> detFactura = new HashSet<DetalleFactura>();
         factura.setDetalleFacturas(detFactura);
+        
+        factura = new Factura(null, 100);
         
         return factura;
         

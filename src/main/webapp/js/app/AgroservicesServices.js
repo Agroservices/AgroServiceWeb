@@ -32,6 +32,17 @@
 
         };
         
+        this.agregarFactura = function (transaccion,impuestoFactura,idProductoEnVenta,idMinorista,cantidad){
+            
+            var factura = {"transaccionesBancarias":transaccion,"impuesto":impuestoFactura}
+            return $http({
+                method: 'POST',
+                url: 'rest/compras/'+idMinorista+'/'+idProductoEnVenta+'/'+cantidad,
+                data: factura
+            });
+            
+        };
+        
         this.getTarjeta = function (){
            return $http.get('/rest/compras/tarjetaValidacion/');
         };

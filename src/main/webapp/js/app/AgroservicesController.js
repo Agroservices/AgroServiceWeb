@@ -25,6 +25,9 @@
         $scope.anoVencimiento;
         $scope.informacionTarjeta;
         
+        //Vareables relacionadas con la compra
+        
+        $scope.idMinorista = 1013627899;
         $scope.tarjeta;
         
         
@@ -75,14 +78,26 @@
         $scope.realizarCompra = function(){
             //{"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016}
             
-            $scope.idTransaccion;
+            $scope.transaccionBacaria;
             
             AgroservicesRestAPI.validarInformacionTarjeta($scope.numeroTarjeta,$scope.codigoTarjeta,$scope.mesVencimiento,$scope.anoVencimiento).success(                    
                     function(data,status,header,config){
-                        $log.log("Post exitoso");
-                        $scope.idTransaccion = data;
+                        $log.log("Post Transaccion exitoso");
+                        
+                        $scope.transaccionBacaria = data;
+                        //$log.log($scope.transaccionBacaria);
+                        
+                        AgroservicesRestAPI.agregarFactura($scope.transaccionBacaria,$scope.costoCompra*0.16,$scope.ProductoEnVenta.idProductosEnVenta,$scope.idMinorista,$scope.cantidadConsulta).success(function(data,status,header,config){
+                            $log.log("POST compra exitoso");
+                            alert("Transaccion Exitosa!!");
+                        }).error(function(data,status,header,config){
+                            $log.log("Post COMPRA fail");
+                            $log.log(data+" "+status);
+                        });
+                        
                     }).error(function(data,status,header,config){
-                        $log.log("Post fail");
+                        alert("Datos de la tarjeta incorrectos...");
+                        $log.log("Post Transaccion fail");
                         $log.log(data+" "+status);
                     });
                     

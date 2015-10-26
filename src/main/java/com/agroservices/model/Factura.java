@@ -45,12 +45,20 @@ public class Factura  implements java.io.Serializable {
         this.fecha = fecha;
         this.impuesto = impuesto;
     }
+    
     public Factura(TransaccionBancaria transaccionesBancarias, Ubicacion ubicaciones, Date fecha, float impuesto, Set<DetalleFactura> detalleFacturas) {
        this.transaccionesBancarias = transaccionesBancarias;
        this.ubicaciones = ubicaciones;
        this.fecha = fecha;
        this.impuesto = impuesto;
        this.detalleFacturas = detalleFacturas;
+    }
+    
+    public Factura (TransaccionBancaria transaccionesBancarias, float impuesto){
+        
+        this.transaccionesBancarias = transaccionesBancarias;
+        this.impuesto = impuesto;
+        
     }
    
      @Id @GeneratedValue
@@ -105,7 +113,7 @@ public class Factura  implements java.io.Serializable {
         this.impuesto = impuesto;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="facturas")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="facturas")
     public Set<DetalleFactura> getDetalleFacturas() {
         return this.detalleFacturas;
     }
