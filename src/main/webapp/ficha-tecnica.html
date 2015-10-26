@@ -21,7 +21,9 @@
                 </select>
             </div>                        
                 <label for="pregunta">¿No encuentra su producto?</label>
-                <input type="checkbox" ng-model="noHayProducto" class="form-control" id="pregunta"/>                   
+                <input type="checkbox" ng-model="noHayProducto" class="form-control" id="pregunta"/>     
+                <p ng-show="noHayProducto">Se ha desplegado un menú en la parte inferior de la página para que pueda
+                crear su propio producto</p>
             <div class="form-group">
                 <label for="fecha">Fecha Cosecha</label>
                 <input type="date" ng-model="productoEnVenta.fechaCosecha" class="form-control" required
@@ -43,8 +45,11 @@
                           ng-model="productoEnVenta.descripcion"></textarea>                
             </div> 
                                     
-            <input type="submit" value="Enviar"/>
-        </form>      
+            <input type="submit" value="Enviar" class="btn btn-primary"/>
+        </form>   
+        <p ng-show="exitoCrearProductoEnVenta">Se creó con exito su ficha técnica señor campesino, 
+            ya podrá hacer ventas con ella.</p>
+        <p ng-show="errorCrearProductoEnVenta">No se pudo crear la ficha técnica de su producto.</p>
         <div ng-show="noHayProducto">
             <h2>Formulario Creación de Productos</h2>
             <form name="productoFicha" novalidate ng-submit="productoFicha.$valid && enviarProducto()">
@@ -62,8 +67,11 @@
                 <label for="refrigeracion">¿Necesita refrigeración?</label>
                 <input type="checkbox" ng-model="producto.refrigeracion" class="form-control" id="refrigeracion"/>
             </div>  
-                <input type="submit" value="Enviar"/>                
-            </form>              
+                <input type="submit" value="Enviar" class="btn btn-primary"/>                
+            </form>  
+            <p ng-show="exitoCrearProducto">Se creó con exito su producto señor campesino, 
+                ya podrá registrar fichas técnicas con este producto.</p>  
+            <p ng-show="errorCrearProducto">No se pudo crear el nuevo producto que deseaba.</p>
         </div>        
     </div>
         

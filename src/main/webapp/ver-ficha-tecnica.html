@@ -13,8 +13,9 @@
             <label for="IdCampesino">ID Campesino</label>
             <input type="number" ng-model="campesino.idCampesino" class="form-control" required id="IdCampesino"
                    placeholder="Identificación Campesino"/>
-            <button ng-click="buscarProductosEnVenta()">Buscar</button>
-        </div>        
+            <button ng-click="buscarProductosEnVenta()" class="btn btn-primary">Buscar</button>
+        </div>    
+        <p ng-show="productosEnVenta.length <= 0 && consultarFichas">Este campesino no tiene fichas técnicas en este momento.</p>
         <table class="table table-condensed" ng-show="productosEnVenta.length > 0">
             <thead>
                 <tr>

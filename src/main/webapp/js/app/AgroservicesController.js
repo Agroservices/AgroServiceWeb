@@ -131,11 +131,22 @@
 
         $scope.producto = {};
         
-        $scope.enviarProducto = function(){
+        $scope.errorCrearProducto = false;
+        
+        $scope.errorCrearProductoEnVenta = false;
+        
+        $scope.exitoCrearProducto = false;
+        
+        $scope.exitoCrearProductoEnVenta = false;
+        
+        $scope.enviarProducto = function(){            
+            $scope.errorCrearProducto = false;                    
+            $scope.exitoCrearProducto = false;                               
             $log.log("Enviar Producto");
             $scope.productoPromise = AgroservicesRestAPI.postProducto($scope.producto)
                   .success(function(data,status,header,config){
                       $log.log("Post de Producto Exitoso");
+                      $scope.exitoCrearProducto = true;
                       $scope.productosPromise = AgroservicesRestAPI.getProductosConsultaCompra();
         
                       $scope.productosPromise.then(
@@ -148,10 +159,13 @@
                                       );              
                   }).error(function(data,status,header,config){
                       $log.log("Post Producto Fail");
+                      $scope.errorCrearProducto = true;
                   });
         };
         
-        $scope.enviarProductoEnVenta = function(){
+        $scope.enviarProductoEnVenta = function(){            
+            $scope.errorCrearProductoEnVenta = false;                        
+            $scope.exitoCrearProductoEnVenta = false;              
             $scope.productoEnVenta.campesinos = {};
             var productoTemp = {};
             for(var i=0; i<$scope.productos.length;i++){         
@@ -167,9 +181,11 @@
             AgroservicesRestAPI.postProductosEnVenta($scope.productoEnVenta,$scope.campesino.idCampesino).success(                    
                     function(data,status,header,config){
                         $log.log("Post exitoso");
+                        $scope.exitoCrearProductoEnVenta = true;
                     }).error(function(data,status,header,config){
                         $log.log("Post fail");
                         $log.log(data+" "+status);
+                        $scope.errorCrearProductoEnVenta = true;
                     });
         };
         
@@ -183,11 +199,16 @@
         
         $scope.productoEnVenta = {};
         
-        $scope.buscarProductosEnVenta = function(){
+        $scope.consultarFichas = false;
+                        
+        $scope.buscarProductosEnVenta = function(){          
+          $scope.consultarFichas = true;
           $scope.productoEnVentaPromise = AgroservicesRestAPI.getProductosEnVentaPorCampesino($scope.campesino.idCampesino)
                 .success(function(data,status,header,config){
                     $log.log(data);
                     $scope.productosEnVenta = data;
+                }).error(function(data,status,header,config){
+                    $log.log(data);                    
                 });          
         };
                         
