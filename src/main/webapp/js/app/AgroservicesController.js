@@ -25,11 +25,13 @@
         $scope.anoVencimiento;
         $scope.informacionTarjeta;
         
-        //Vareables relacionadas con la compra
+        //Variables relacionadas con la compra
         
         $scope.idMinorista = 1013627899;
         $scope.tarjeta;
         
+        //Vaariables del transportista
+        $scope.idTransportista = 0;
         
         $scope.ventasPorCampesino = function (){
             $scope.ventas = AgroservicesRestAPI.getVentasByCampesino($scope.idCampesino).success(function(data,status,headers,config){
@@ -103,6 +105,18 @@
                     
             
             
+        };
+        
+        $scope.rutasPorTransportista = function (){
+            $scope.rutas = AgroservicesRestAPI.getRutas().success(function(data,status,headers,config){
+                $scope.rutas = data;
+            });
+        };
+        
+        $scope.todasRutas = function (){
+            $scope.rutas = AgroservicesRestAPI.getRutas().success(function(data,status,headers,config){
+                $scope.rutas = data;
+            });
         };
         
     }
@@ -220,6 +234,8 @@
         
     });
     
+    
+    
     app.config(function($routeProvider){
         $routeProvider
                 .when('/campesinos',{
@@ -236,6 +252,12 @@
                 })
                 .when('/ventascampesinos',{
                     templateUrl: 'ventas-campesinos.html'
+                })
+                .when('/notificaciones',{
+                    templateUrl: 'home-notificaciones.html'
+                })
+                .when('/confirmarRutas',{
+                    templateUrl: 'confirmacion-rutas-transportistas.html'
                 });
     });
 
@@ -250,6 +272,13 @@
        return{
           restrict:'E',
           templateUrl: 'directives/formulario-productos.html'
+       } ;
+    });
+    
+    app.directive('menuNotificaciones',function(){
+       return{
+          restrict:'E',
+          templateUrl: 'directives/menu-notificaciones.html'
        } ;
     });
 

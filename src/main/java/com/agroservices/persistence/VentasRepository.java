@@ -22,4 +22,7 @@ public interface VentasRepository extends CrudRepository<Venta, Integer>{
     
     @Query("FROM Venta v WHERE v.campesinos.idCampesinos=:campesinoID")
     public List<Venta> ventasPorCampesino(@Param("campesinoID") Integer id);
+    
+    @Query("SELECT df.cantidadComprada FROM DetalleFactura df WHERE df.productosEnVenta=:idProductoEnVenta")
+    public List<Venta> cantidadVendida(@Param("idProductoEnVenta") Integer id);
 }

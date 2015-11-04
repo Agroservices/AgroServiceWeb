@@ -59,6 +59,10 @@
         this.postProducto = function(producto){
           return $http.post('/rest/productos/',producto);  
         };
+        
+        this.getRutas = function () {
+            return $http.get('/rest/rutas/');
+        };
     }
     );
 
