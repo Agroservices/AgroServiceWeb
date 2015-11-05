@@ -23,19 +23,47 @@
                             <th>Codigo de ruta</th>
                             <th>Fecha inicio</th>
                             <th>Fecha finalización</th>
+                            <th>Recoger en</th>
+                            <th>Ciudad</th>
+                            <th>Departamento</th>
+                            <th>Entregar en</th>
+                            <th>Ciudad</th>
+                            <th>Departamento</th>
                         </tr>                
                     </thead>
                     <tbody>
                         <tr ng-repeat="ruta in rutas">
                             <td>
-                                {{ruta.idRutas}}
+                                {{ruta.rutas.idRutas}}
                             </td>
                             <td >
-                                {{ruta.fechaInicio}}
+                                {{ruta.rutas.fechaInicio}}
                             </td>
                             <td >
-                                {{ruta.fechaFinalizacion}}
-                            </td>       
+                                {{ruta.rutas.fechaFinalizacion}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.direccion}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.ciudad}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.departamento}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.facturas.ubicaciones.direccion}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.facturas.ubicaciones.ciudad}}
+                            </td>
+                            <td >
+                                {{ruta.detalleFactura.facturas.ubicaciones.departamento}}
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm" ng-click="rutaSeleccionada(ruta)">Aceptar</button>
+                                <button class="btn btn-danger btn-sm" ng-click="prodSeleccionado(ruta)">Rechazar</button>
+                            </td>
                         </tr>                 
                     </tbody>
                 </table>                  

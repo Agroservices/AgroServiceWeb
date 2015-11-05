@@ -80,7 +80,7 @@ public class ProductoEnVenta  implements java.io.Serializable {
         this.idProductosEnVenta = idProductosEnVenta;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="Campesinos_idCampesinos", nullable=false)
     public Campesino getCampesinos() {
         return this.campesinos;

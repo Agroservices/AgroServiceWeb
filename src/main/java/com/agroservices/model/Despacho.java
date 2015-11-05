@@ -66,7 +66,7 @@ public class Despacho  implements java.io.Serializable {
         this.detalleFactura = detalleFactura;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="Rutas_idRutas", nullable=false)
     public Ruta getRutas() {
         return this.rutas;

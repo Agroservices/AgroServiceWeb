@@ -83,7 +83,7 @@ public class Factura  implements java.io.Serializable {
         this.transaccionesBancarias = transaccionesBancarias;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="Ubicaciones_idUbicaciones", nullable=false)
     public Ubicacion getUbicaciones() {
         return this.ubicaciones;

@@ -65,7 +65,7 @@ public class Campesino  implements java.io.Serializable {
         this.idCampesinos = idCampesinos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="Ubicaciones_idUbicaciones", nullable=false)
     public Ubicacion getUbicaciones() {
         return this.ubicaciones;

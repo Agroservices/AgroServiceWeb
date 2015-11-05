@@ -61,7 +61,7 @@
         };
         
         this.getRutas = function () {
-            return $http.get('/rest/rutas/');
+            return $http.get('/rest/despachos/');
         };
     }
     );

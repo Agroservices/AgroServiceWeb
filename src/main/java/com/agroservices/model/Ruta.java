@@ -73,7 +73,7 @@ public class Ruta  implements java.io.Serializable {
         this.idRutas = idRutas;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="Transportistas_idTransportistas", nullable=false)
     public Transportista getTransportistas() {
         return this.transportistas;

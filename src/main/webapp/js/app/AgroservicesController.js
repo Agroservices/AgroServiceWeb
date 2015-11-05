@@ -119,6 +119,14 @@
             });
         };
         
+        $scope.rutaSeleccionada = function (ruta){
+            alert("Asignada a "+ruta.rutas.transportistas.nombres +" "+ruta.rutas.transportistas.apellidos)
+        };
+        
+        $scope.rutaDenegada = function (ruta){
+            alert("Rechazada por "+ruta.rutas.transportistas.nombres +" "+ruta.rutas.transportistas.apellidos)
+        }
+        
     }
     );
     
