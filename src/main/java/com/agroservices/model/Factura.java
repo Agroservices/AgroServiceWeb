@@ -113,7 +113,7 @@ public class Factura  implements java.io.Serializable {
         this.impuesto = impuesto;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="facturas")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="facturas")
     public Set<DetalleFactura> getDetalleFacturas() {
         return this.detalleFacturas;
     }
@@ -121,10 +121,6 @@ public class Factura  implements java.io.Serializable {
     public void setDetalleFacturas(Set <DetalleFactura>detalleFacturas) {
         this.detalleFacturas = detalleFacturas;
     }
-
-
-
-
 }
 
 

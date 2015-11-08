@@ -174,4 +174,12 @@ public class DespachosFacade {
         return dr.getDespachosTotales();
         //return despachosData;
     }
+    
+    public Despacho getDespachoId(int id){
+        return dr.search(id);
+    }
+    
+    public List<Despacho> getDespachosByTransportista(int id){
+        return dr.porTransportista(id);
+    }
 }

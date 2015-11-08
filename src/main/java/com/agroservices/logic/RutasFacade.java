@@ -58,6 +58,13 @@ public class RutasFacade {
         return dummyRoutesData;
     }
     
+    public String asignarRuta(int idRuta){
+        Ruta r = rr.findOne(idRuta);
+        r.setAprobacion(true);
+        rr.save(r);
+        return "OK";
+    }
+    
     /*public void poblar(){
         Transportista t1 = tr.findOne(123456789);
         Transportista t2 = tr.findOne(741852963);

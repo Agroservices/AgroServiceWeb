@@ -5,8 +5,10 @@
  */
 package com.agroservices.restcontrollers;
 
+import com.agroservices.logic.DespachosFacade;
 import com.agroservices.logic.VentasFacade;
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Despacho;
 import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ubicacion;
@@ -32,7 +34,7 @@ public class VentasRest {
     
     @Autowired
     VentasFacade vf;
-    
+     
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> notificarVenta(@RequestBody Venta v){
         try{

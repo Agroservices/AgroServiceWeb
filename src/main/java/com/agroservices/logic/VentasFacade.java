@@ -7,6 +7,7 @@ package com.agroservices.logic;
 
 
 import com.agroservices.model.Campesino;
+import com.agroservices.model.Despacho;
 import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ubicacion;
@@ -82,4 +83,4 @@ public class VentasFacade {
         return aux;*/
         return vr.ventasPorCampesino(id);
     }
-}
+  }

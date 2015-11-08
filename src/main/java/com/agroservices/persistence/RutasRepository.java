@@ -20,4 +20,6 @@ public interface RutasRepository extends CrudRepository<Ruta, Integer>{
     
     @Query("SELECT r.idRutas FROM Ruta r WHERE r.fechaInicio=:fechaID AND r.transportistas.idTransportistas= :transportistaID")
     public List<Integer> rutasPorTransportista(@Param("fechaID") Date date, @Param("transportistaID") Integer id);
+    
+    
 }

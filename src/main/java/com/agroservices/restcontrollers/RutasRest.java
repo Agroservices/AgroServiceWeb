@@ -9,6 +9,8 @@ import com.agroservices.logic.RutasFacade;
 import com.agroservices.model.Ruta;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,4 +36,10 @@ public class RutasRest {
         rf.poblar();
         return "POBLADO RUTAS OK";
     }*/
+    
+    @RequestMapping(value = "/asignar/{id}",method = RequestMethod.GET)
+    public String asignarRuta(@PathVariable int id)throws OperationFailedException{
+        String resultado=rf.asignarRuta(id);
+        return resultado;
+    }
 }

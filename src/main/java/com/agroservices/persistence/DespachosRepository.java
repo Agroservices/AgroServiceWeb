@@ -18,10 +18,13 @@ import org.springframework.data.repository.query.Param;
  */
 public interface DespachosRepository extends CrudRepository<Despacho, Integer>{
     
+    @Query("FROM Despacho d")
+    public List<Despacho> getDespachosTotales();
+    
     @Query("from Despacho d where d.idDespachos=:idDespacho")
     public Despacho search(@Param("idDespacho") Integer id);
     
-    @Query("FROM Despacho d")
-    public List<Despacho> getDespachosTotales();
+    @Query("from Despacho d where d.rutas.transportistas.idTransportistas=:idTransportista")
+    public List<Despacho> porTransportista(@Param("idTransportista") Integer id);
     
 }

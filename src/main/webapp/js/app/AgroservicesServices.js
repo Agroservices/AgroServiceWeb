@@ -63,6 +63,14 @@
         this.getRutas = function () {
             return $http.get('/rest/despachos/');
         };
+        
+        this.getRutasByTransportsta = function (idTransportista) {
+            return $http.get('/rest/despachos/transportista/'+idTransportista);
+        };
+        
+        this.asignarRuta = function (idRuta){
+            return $http.get('/rest/rutas/asignar/'+idRuta);
+        };
     }
     );
 
