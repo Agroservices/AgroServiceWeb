@@ -29,4 +29,9 @@ public class RutasRest {
         return rf.todasRutasDummy();
     }
     
+    /*@RequestMapping(value = "/poblar",method = RequestMethod.GET)
+    public String poblar()throws OperationFailedException{
+        rf.poblar();
+        return "POBLADO RUTAS OK";
+    }*/
 }

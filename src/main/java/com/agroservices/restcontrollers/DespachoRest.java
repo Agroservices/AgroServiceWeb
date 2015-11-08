@@ -28,4 +28,10 @@ public class DespachoRest {
     public List<Despacho> consultarTodosDespachos()throws OperationFailedException{
         return df.getDespachos();
     }
+    
+    /*@RequestMapping(value = "/poblar",method = RequestMethod.GET)
+    public String poblar()throws OperationFailedException{
+        df.poblar();
+        return "POBLAR DESPACHOS OK";
+    }*/
 }

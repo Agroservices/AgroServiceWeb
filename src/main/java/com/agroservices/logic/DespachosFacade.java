@@ -17,6 +17,8 @@ import com.agroservices.model.TransaccionBancaria;
 import com.agroservices.model.Transportista;
 import com.agroservices.model.Ubicacion;
 import com.agroservices.persistence.DespachosRepository;
+import com.agroservices.persistence.DetallesFacturasRepository;
+import com.agroservices.persistence.RutasRepository;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +34,12 @@ public class DespachosFacade {
     
     @Autowired
     DespachosRepository dr;
+    
+    /*@Autowired
+    RutasRepository rr;
+    
+    @Autowired
+    DetallesFacturasRepository dtr;*/
     
     private static final List<Despacho> despachosData = new LinkedList<>();
     
@@ -114,7 +122,56 @@ public class DespachosFacade {
         despachosData.add(d9);
     }
     
+    /*public void poblar(){
+        DetalleFacturaId dti1 = new DetalleFacturaId(2, 11);
+        DetalleFacturaId dti2 = new DetalleFacturaId(3, 12);
+        DetalleFacturaId dti3 = new DetalleFacturaId(5, 4);
+        DetalleFacturaId dti4 = new DetalleFacturaId(5, 5);
+        DetalleFacturaId dti5 = new DetalleFacturaId(5, 6);
+        DetalleFacturaId dti6 = new DetalleFacturaId(5, 7);
+        DetalleFacturaId dti7 = new DetalleFacturaId(25, 10);
+        DetalleFacturaId dti8 = new DetalleFacturaId(25, 13);
+        DetalleFacturaId dti9 = new DetalleFacturaId(26, 8);
+        DetalleFactura dt1 = dtr.findOne(dti1);
+        DetalleFactura dt2 = dtr.findOne(dti2);
+        DetalleFactura dt3 = dtr.findOne(dti3);
+        DetalleFactura dt4 = dtr.findOne(dti4);
+        DetalleFactura dt5 = dtr.findOne(dti5);
+        DetalleFactura dt6 = dtr.findOne(dti6);
+        DetalleFactura dt7 = dtr.findOne(dti7);
+        DetalleFactura dt8 = dtr.findOne(dti8);
+        DetalleFactura dt9 = dtr.findOne(dti9);
+        Ruta r1 = rr.findOne(1);
+        Ruta r2 = rr.findOne(2);
+        Ruta r3 = rr.findOne(3);
+        Ruta r4 = rr.findOne(4);
+        Ruta r5 = rr.findOne(5);
+        Ruta r6 = rr.findOne(6);
+        Ruta r7 = rr.findOne(7);
+        Ruta r8 = rr.findOne(8);
+        Ruta r9 = rr.findOne(9);
+        Despacho d1 = new Despacho(dt1, r1, new Date(2015-1900,8,10), new Date(2015-1900,8,10));
+        Despacho d2 = new Despacho(dt2, r2, new Date(2015-1900,8,10), new Date(2015-1900,8,11));
+        Despacho d3 = new Despacho(dt3, r3, new Date(2015-1900, 8, 12), new Date(2015-1900,8,12));
+        Despacho d4 = new Despacho(dt4, r4, new Date(2015-1900, 8, 15), new Date(2015-1900,8,16));
+        Despacho d5 = new Despacho(dt5, r5, new Date(2015-1900, 8, 10), new Date(2015-1900,8,11));
+        Despacho d6 = new Despacho(dt6, r6, new Date(2015-1900, 8, 20), new Date(2015-1900,8,20));
+        Despacho d7 = new Despacho(dt7, r7, new Date(2015-1900, 8, 12), new Date(2015-1900,8,12));
+        Despacho d8 = new Despacho(dt8, r8, new Date(2015-1900, 8, 12), new Date(2015-1900,8,12));
+        Despacho d9 = new Despacho(dt9, r9, new Date(2015-1900, 8, 15), new Date(2015-1900,8,16));
+        dr.save(d1);
+        dr.save(d2);
+        dr.save(d3);
+        dr.save(d4);
+        dr.save(d5);
+        dr.save(d6);
+        dr.save(d7);
+        dr.save(d8);
+        dr.save(d9);
+    }*/
+    
     public List<Despacho> getDespachos(){
-        return despachosData;
+        return dr.getDespachosTotales();
+        //return despachosData;
     }
 }

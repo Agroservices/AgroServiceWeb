@@ -41,6 +41,7 @@ public class Ruta  implements java.io.Serializable {
      private Transportista transportistas;
      private Date fechaInicio;
      private Date fechaFinalizacion;
+     private boolean aprobacion;
      private Set <Despacho>despachoses = new HashSet<Despacho>(0);
      private Set <Novedad>novedadeses = new HashSet<Novedad>(0);
 
@@ -101,6 +102,15 @@ public class Ruta  implements java.io.Serializable {
     
     public void setFechaFinalizacion(Date fechaFinalizacion) {
         this.fechaFinalizacion = fechaFinalizacion;
+    }
+    
+    @Column(name="aprobacion", nullable=false)
+    public boolean isAprobacion() {
+        return this.aprobacion;
+    }
+    
+    public void setAprobacion(boolean aprobacion) {
+        this.aprobacion = aprobacion;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="rutas")
