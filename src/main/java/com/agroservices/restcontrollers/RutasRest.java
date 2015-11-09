@@ -42,4 +42,20 @@ public class RutasRest {
         String resultado=rf.asignarRuta(id);
         return resultado;
     }
+    
+    @RequestMapping(value = "/transportista/{id}",method = RequestMethod.GET)
+    public List<Ruta> rutasPorTransportista(@PathVariable int id)throws OperationFailedException{
+        return rf.rutasPorTransportista(id);
+    }
+    
+    @RequestMapping(value = "/rechazar/{id}",method = RequestMethod.GET)
+    public String rechazarRuta(@PathVariable int id)throws OperationFailedException{
+        String resultado=rf.rechazarRuta(id);
+        return resultado;
+    }
+    
+    @RequestMapping(value = "/random",method = RequestMethod.GET)
+    public int probarRandom()throws OperationFailedException{
+        return rf.pruebaRandom();
+    }
 }

@@ -21,8 +21,45 @@
                     <thead>
                         <tr>
                             <th>Codigo de ruta</th>
-                            <th>Fecha inicio</th>
-                            <th>Fecha finalización</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Finalización</th>
+                        </tr>                
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ruta in rutas">
+                            <td>
+                                {{ruta.idRutas}}
+                            </td>
+                            <td >
+                                {{ruta.transportistas.nombres}}
+                            </td>
+                            <td >
+                                {{ruta.transportistas.apellidos}}
+                            </td>
+                            <td >
+                                {{ruta.fechaInicio}}
+                            </td>
+                            <td >
+                                {{ruta.fechaFinalizacion}}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" ng-click="despachosPorRuta(ruta)">Ver despachos</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm" ng-click="rutaSeleccionada(ruta)">Aceptar</button>
+                                <button class="btn btn-danger btn-sm" ng-click="prodSeleccionado(ruta)">Rechazar</button>
+                            </td>
+                        </tr>                 
+                    </tbody>
+                </table>
+                <h2>Despachos</h2>
+                <table class="table table-condensed table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Producto </th>
+                            <th>Cantidad </th>
                             <th>Recoger en</th>
                             <th>Ciudad</th>
                             <th>Departamento</th>
@@ -32,37 +69,30 @@
                         </tr>                
                     </thead>
                     <tbody>
-                        <tr ng-repeat="ruta in rutas">
+                        <tr ng-repeat="despacho in despachos">
                             <td>
-                                {{ruta.rutas.idRutas}}
-                            </td>
-                            <td >
-                                {{ruta.rutas.fechaInicio}}
-                            </td>
-                            <td >
-                                {{ruta.rutas.fechaFinalizacion}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.direccion}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.ciudad}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.productosEnVenta.campesinos.ubicaciones.departamento}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.facturas.ubicaciones.direccion}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.facturas.ubicaciones.ciudad}}
-                            </td>
-                            <td >
-                                {{ruta.detalleFactura.facturas.ubicaciones.departamento}}
+                                {{despacho.detalleFactura.productosEnVenta.productos.nombre}}
                             </td>
                             <td>
-                                <button class="btn btn-success btn-sm" ng-click="rutaSeleccionada(ruta)">Aceptar</button>
-                                <button class="btn btn-danger btn-sm" ng-click="prodSeleccionado(ruta)">Rechazar</button>
+                                {{despacho.detalleFactura.cantidadComprada}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.productosEnVenta.campesinos.ubicaciones.direccion}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.productosEnVenta.campesinos.ubicaciones.ciudad}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.productosEnVenta.campesinos.ubicaciones.departamento}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.facturas.ubicaciones.direccion}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.facturas.ubicaciones.ciudad}}
+                            </td>
+                            <td >
+                                {{despacho.detalleFactura.facturas.ubicaciones.departamento}}
                             </td>
                         </tr>                 
                     </tbody>

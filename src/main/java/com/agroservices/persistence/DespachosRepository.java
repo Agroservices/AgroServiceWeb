@@ -27,4 +27,7 @@ public interface DespachosRepository extends CrudRepository<Despacho, Integer>{
     @Query("from Despacho d where d.rutas.transportistas.idTransportistas=:idTransportista")
     public List<Despacho> porTransportista(@Param("idTransportista") Integer id);
     
+    @Query("from Despacho d where d.rutas.idRutas=:idRuta")
+    public List<Despacho> porRuta(@Param("idRuta") Integer id);
+    
 }

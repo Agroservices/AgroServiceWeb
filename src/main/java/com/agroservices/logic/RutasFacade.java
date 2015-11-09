@@ -12,6 +12,7 @@ import com.agroservices.persistence.TransportistasRepository;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +64,33 @@ public class RutasFacade {
         r.setAprobacion(true);
         rr.save(r);
         return "OK";
+    }
+    
+    public List<Ruta> rutasPorTransportista(int idTransportista){
+        return rr.rutasTransportista(idTransportista);
+    }
+    
+    public String rechazarRuta(int idRuta){
+        Ruta r = rr.findOne(idRuta);
+        r = asignarRandom(r,r.getTransportistas().getIdTransportistas());
+        rr.save(r);
+        return "OK";
+    }
+    
+    public Ruta asignarRandom(Ruta r, int id){
+        List<Transportista> transportistas = tr.getTransportistasTotales();
+        int aleatorio = 0;
+        int nuevoId = id;
+        do{
+        aleatorio =(int)(Math.random()*(transportistas.size()));
+        nuevoId = transportistas.get(aleatorio).getIdTransportistas();
+        }while(nuevoId==id);
+        r.setTransportistas(transportistas.get(aleatorio));
+        return r;
+    }
+    
+    public int pruebaRandom(){
+        return (int)(Math.random()*5);
     }
     
     /*public void poblar(){

@@ -40,6 +40,10 @@ public class DespachoRest {
         return df.getDespachosByTransportista(id);
     }
     
+    @RequestMapping(value = "/rutas/{id}",method = RequestMethod.GET)
+    public List<Despacho> DespachoByRuta(@PathVariable int id)throws OperationFailedException{
+        return df.getDespachosByRuta(id);
+    }
     /*@RequestMapping(value = "/poblar",method = RequestMethod.GET)
     public String poblar()throws OperationFailedException{
         df.poblar();

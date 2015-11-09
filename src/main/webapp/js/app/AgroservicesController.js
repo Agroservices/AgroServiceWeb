@@ -107,8 +107,14 @@
             
         };
         
-        $scope.rutasPorTransportista = function (ruta){
-            $scope.rutas = AgroservicesRestAPI.getRutasByTransportsta(ruta.rutas.transportistas.idTransportistas).success(function(data,status,headers,config){
+        $scope.despachosPorRuta = function (ruta){
+            $scope.despachos = AgroservicesRestAPI.getDspachosByRuta(ruta.idRutas).success(function(data,status,headers,config){
+                $scope.despachos = data;
+            });
+        };
+        
+        $scope.rutasPorTransportista = function (){
+            $scope.rutas = AgroservicesRestAPI.getRutasByTransportsta($scope.idTransportista).success(function(data,status,headers,config){
                 $scope.rutas = data;
             });
         };
@@ -120,8 +126,8 @@
         };
         
         $scope.rutaSeleccionada = function (ruta){
-            AgroservicesRestAPI.asignarRuta(ruta.rutas.idRutas).success(function(data,status,header,config){
-                alert("Asignada a "+ruta.rutas.transportistas.nombres +" "+ruta.rutas.transportistas.apellidos);
+            AgroservicesRestAPI.asignarRuta(ruta.idRutas).success(function(data,status,header,config){
+                alert("Asignada a "+ruta.transportistas.nombres +" "+ruta.transportistas.apellidos);
             }).error(function(data,status,header,config){
                     $log.log(data+" "+status);
                     alert("No se pudo asignar la ruta");

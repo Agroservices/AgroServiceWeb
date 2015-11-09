@@ -6,6 +6,8 @@
 package com.agroservices.persistence;
 
 import com.agroservices.model.Transportista;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -14,4 +16,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface TransportistasRepository extends CrudRepository<Transportista, Integer>{
     
+    @Query("FROM Transportista t")
+    public List<Transportista> getTransportistasTotales();
 }

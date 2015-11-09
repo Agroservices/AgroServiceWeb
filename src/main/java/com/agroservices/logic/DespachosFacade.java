@@ -182,4 +182,8 @@ public class DespachosFacade {
     public List<Despacho> getDespachosByTransportista(int id){
         return dr.porTransportista(id);
     }
+    
+    public List<Despacho> getDespachosByRuta(int id){
+        return dr.porRuta(id);
+    }
 }
