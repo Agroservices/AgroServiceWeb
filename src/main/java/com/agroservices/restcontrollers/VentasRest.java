@@ -6,6 +6,7 @@
 package com.agroservices.restcontrollers;
 
 import com.agroservices.logic.DespachosFacade;
+import com.agroservices.logic.FacturaFacade;
 import com.agroservices.logic.VentasFacade;
 import com.agroservices.model.Campesino;
 import com.agroservices.model.Despacho;
@@ -34,6 +35,9 @@ public class VentasRest {
     
     @Autowired
     VentasFacade vf;
+    
+    @Autowired
+    FacturaFacade ff;
      
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> notificarVenta(@RequestBody Venta v){
@@ -73,6 +77,11 @@ public class VentasRest {
         if(v==null)
             throw new OperationFailedException();*/
         return v;
+    }
+    
+    @RequestMapping(value = "/factura/{idFactura}/ubicacion", method = RequestMethod.GET)
+    public Ubicacion getUbicacionMinoristaPorFactura(@PathVariable int idFactura){
+        return ff.getUbicacionPorFactura(idFactura);
     }
     
 }

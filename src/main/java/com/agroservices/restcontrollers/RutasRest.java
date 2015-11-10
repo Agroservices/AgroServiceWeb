@@ -6,6 +6,7 @@
 package com.agroservices.restcontrollers;
 
 import com.agroservices.logic.RutasFacade;
+import com.agroservices.model.Despacho;
 import com.agroservices.model.Ruta;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class RutasRest {
         return resultado;
     }
     
+
     @RequestMapping(value = "/transportista/{id}",method = RequestMethod.GET)
     public List<Ruta> rutasPorTransportista(@PathVariable int id)throws OperationFailedException{
         return rf.rutasPorTransportista(id);
@@ -58,4 +60,11 @@ public class RutasRest {
     public int probarRandom()throws OperationFailedException{
         return rf.pruebaRandom();
     }
+
+    @RequestMapping(value = "/{idRuta}/despachos",method = RequestMethod.GET)
+    public List<Despacho> getDespachosPorRuta(@PathVariable int idRuta){
+        return rf.getMockRutasConDespachos();
+    }
+    
+
 }

@@ -8,11 +8,13 @@ package com.agroservices.logic;
 import com.agroservices.model.Campesino;
 import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
+import com.agroservices.model.Ubicacion;
 import com.agroservices.persistence.CampesinosRepository;
 import com.agroservices.persistence.UbicacionesRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -66,6 +68,10 @@ public class CampesinosFacade {
     
     public List<ProductoEnVenta> getProductosEnVenta(int idCampesino){
         return pvf.getProductosEnVentaPorCampesino(idCampesino);
+    }
+    
+    public Ubicacion getUbicacionProProducto(int idProducto){        
+        return cr.getUbicacionCampesinoPorProductoEnVenta(idProducto);
     }
     
 }

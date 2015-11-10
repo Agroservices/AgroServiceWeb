@@ -37,13 +37,13 @@ public class ProductosEnVentaFacade {
         pr.save(pev);
     }
     
-    
+    public String consultarNombreDeProducto(int idProducto){
+        return pr.findOne(idProducto).getProductos().getNombre();
+    }
     
     public List<ProductoEnVenta> getProductosEnVentaConsulta(int idProducto, float cantidad){
         
-        return pr.productosEnVentaPorCantidadProducto(idProducto, cantidad);
-        
-        
+        return pr.productosEnVentaPorCantidadProducto(idProducto, cantidad);                
         
     }
     

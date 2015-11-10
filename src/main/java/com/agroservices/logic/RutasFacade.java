@@ -5,14 +5,25 @@
  */
 package com.agroservices.logic;
 
+import com.agroservices.model.Campesino;
+import com.agroservices.model.Despacho;
+import com.agroservices.model.DetalleFactura;
+import com.agroservices.model.DetalleFacturaId;
+import com.agroservices.model.Factura;
+import com.agroservices.model.Minorista;
+import com.agroservices.model.Producto;
+import com.agroservices.model.ProductoEnVenta;
 import com.agroservices.model.Ruta;
 import com.agroservices.model.Transportista;
+import com.agroservices.model.Ubicacion;
 import com.agroservices.persistence.RutasRepository;
 import com.agroservices.persistence.TransportistasRepository;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -125,5 +136,44 @@ public class RutasFacade {
         rr.save(r8);
         rr.save(r9);
     }*/
+    
+    public List<Despacho> getMockRutasConDespachos(){
+        //Dos Campesinos
+        Ubicacion ubCamp1 = new Ubicacion("Calle 3#3E-116", "Cajica", "Cundinamarca", "70", "35");
+        Campesino c1 = new Campesino(123456789, ubCamp1, "Pedro", "Franco", "5555777");
+        Ubicacion ubCamp2 = new Ubicacion("Calle 1#2_21", "Tabio", "Cundinamarca", "73", "37");
+        Campesino c2 = new Campesino(123456, ubCamp2, "Juan", "Perez", "1234567");
+        ubCamp1.setIdUbicaciones(1);ubCamp2.setIdUbicaciones(2);
+        //Dos productos y tres productos en venta
+        Producto p1 = new Producto("Papa criolla", 40, false);
+        Producto p2 = new Producto("Maiz", 90, false);
+        ProductoEnVenta pv1 = new ProductoEnVenta(c1, p1 , "Papa criolla de Cajica", null, 120, 1000);
+        ProductoEnVenta pv2= new ProductoEnVenta(c2, p2, "Maiz de Tabio", null, 200, 1500);
+        pv1.setIdProductosEnVenta(1);pv2.setIdProductosEnVenta(2);
+        //Dos minoristas compran los productos
+        Ubicacion ubMin1 = new Ubicacion("Calle 24#2E-48", "Chia", "Cundinamarca", "68", "35");
+        Ubicacion ubMin2 = new Ubicacion("Calle 14#10-35", "Zipaquira", "Cundinamarca", "72", "37");
+        ubMin1.setIdUbicaciones(3);ubMin2.setIdUbicaciones(4);
+        Factura f1 = new Factura(null, ubMin1, null, 0);        
+        Factura f2 = new Factura(null, ubMin2, null, 0);
+        Factura f3 = new Factura(null, ubMin2, null, 0);
+        f1.setIdFacturas(1);f2.setIdFacturas(2);f3.setIdFacturas(3);
+        //Crear los tres detalles facturas
+        DetalleFacturaId dfId1 = new DetalleFacturaId(1, 4);
+        DetalleFactura df1 = new DetalleFactura(dfId1, null, null, 40, 70000, false);
+        DetalleFacturaId dfId2 = new DetalleFacturaId(1, 5);
+        DetalleFactura df2 = new DetalleFactura(dfId2, null, null, 60, 80000, false);        
+        DetalleFacturaId dfId3 = new DetalleFacturaId(2, 6);
+        DetalleFactura df3 = new DetalleFactura(dfId3, null, null, 60, 90000, false);        
+        //Crear los Despachos
+        Despacho d1 = new Despacho(df1, null, new Date(2015, 11, 13), new Date(2015, 11, 13));        
+        Despacho d2 = new Despacho(df2, null, new Date(2015, 11, 13), new Date(2015, 11, 13));
+        Despacho d3 = new Despacho(df3, null, new Date(2015, 11, 13), new Date(2015, 11, 13));
+        d1.setIdDespachos(9);d2.setIdDespachos(10);d3.setIdDespachos(11);
+        //Crear Ruta        
+        List<Despacho> despachos = new LinkedList<Despacho>();
+        despachos.add(d1);despachos.add(d2);despachos.add(d3);        
+        return despachos;
+    }
     
 }

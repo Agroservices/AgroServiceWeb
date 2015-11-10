@@ -5,6 +5,7 @@
  */
 package com.agroservices.restcontrollers;
 
+import com.agroservices.logic.CampesinosFacade;
 import com.agroservices.logic.ProductosEnVentaFacade;
 import com.agroservices.logic.ProductosFacade;
 import com.agroservices.model.Campesino;
@@ -33,6 +34,9 @@ public class ProductosEnVentaRest {
     
     @Autowired
     ProductosFacade pf;
+    
+    @Autowired
+    CampesinosFacade cf;
     
     //Se determina que la id estara compuesta asi: "#-%" donde #= producro y &=cantidad
     /**
@@ -77,5 +81,14 @@ public class ProductosEnVentaRest {
         
     }
     
+    @RequestMapping(value = "/{idProducto}/ubicacion",method =RequestMethod.GET)
+    public Ubicacion getUbicacionPorProducto(@PathVariable int idProducto){        
+        return cf.getUbicacionProProducto(idProducto);
+    }
+    
+    @RequestMapping(value = "/{idProducto}/nombre", method = RequestMethod.GET)
+    public String nombreProductoEnVentaPorId(@PathVariable int idProducto){
+        return pef.consultarNombreDeProducto(idProducto);
+    }
     
 }
