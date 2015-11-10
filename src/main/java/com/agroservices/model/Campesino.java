@@ -28,6 +28,7 @@ public class Campesino  implements java.io.Serializable {
      private String apellidos;
      private String telefono;
      private String correo;
+     private String cuentaBancaria;
      private Set<ProductoEnVenta> productosEnVentas = new HashSet(0);
      private Set<Venta> ventases = new HashSet(0);
 
@@ -114,6 +115,17 @@ public class Campesino  implements java.io.Serializable {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    @Column(name="cuentaBancaria", length=30)
+    public String getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(String cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
+    }
+    
+    
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="campesinos")
     public Set<ProductoEnVenta> getProductosEnVentas() {

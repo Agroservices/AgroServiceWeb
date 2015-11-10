@@ -186,4 +186,31 @@ public class DespachosFacade {
     public List<Despacho> getDespachosByRuta(int id){
         return dr.porRuta(id);
     }
+    
+    /**
+     * Método encargado de confirmar que el producto comprado por el minorisrta le ha sido entregado al mismo
+     * @param idDespacho
+     * @return 
+     */
+    public boolean setDetalleDespacho(int idDespacho){
+        
+        
+        try {
+            
+            Despacho despacho = dr.findOne(idDespacho);
+            Despacho despachoActualizado = dr.findOne(despacho.getIdDespachos());
+        
+            despachoActualizado.getDetalleFactura().setYaSeEntrego(true);
+            dr.save(despachoActualizado);
+            
+            return true;
+            
+        } catch (Exception e) {
+            
+            return false;
+            
+        }
+        
+    }
+    
 }
