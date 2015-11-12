@@ -1,10 +1,10 @@
-README
+﻿README
 
 Instrucciones para el uso de la página Agroservices
 
-1. En la parte superior de la página se encuentran unos tag con el contenido: Vender, consultar Ventas, comprar, campesinos, minoristas
+1. En la parte superior de la página se encuentran unos tag con el contenido: campesinos, minoristas, notificaciones
 	+ estos tag cargan las funcionalidades desarrolladas
-	+ los tag campesinos y minoristas contiene las funcionalidades que se desarrollaron
+	+ los tag campesinos, minoristas y notificaciones contiene las funcionalidades que se desarrollaron
 	
 2. Dar click en campesinos carga las funcionalidades para el campesino: Realizar Ficha Técnica, Ver fichas Técnicas, Ver ventas
 	+ Realizar Ficha Técnica: Al dar click en este link aparecera un  formulario para ingresar los datos del producto a vender,
@@ -32,3 +32,16 @@ Instrucciones para el uso de la página Agroservices
 		  y se informará al usuario por medio de un pop-up.
 		- la compra realizada puede ser consultada inmediatamente en el apartado de campesinos en la sección "Ver ventas"
 		
+4. Dar click en notifiaciones carga la funcionalidad relacionada con las rutas asignadas a los transportistas:
+
+	+ Dar click en confirmar rutas
+	+ Ingresas el número de cedula del transportista
+		- en caso que se quiera conocer las rutas para un transportista en especifíco
+	+ Dar click en "consultar por cc" o "consultar todas las rutas"
+	+ Las rutas correspondientes serán listadas
+	+ Para cada ruta se ofrece la opción de ver los productos en venta que serán transportados en la ruta
+
+5. Aplicacion movil
+
+	+ A continuación se deja el link en el cual se podrá acceder al proyecto que contiene la aplicación movil:
+		https://github.com/Agroservices/AgroservicesMovil.git
