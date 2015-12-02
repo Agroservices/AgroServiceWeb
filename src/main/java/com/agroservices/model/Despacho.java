@@ -31,6 +31,8 @@ public class Despacho  implements java.io.Serializable {
      private Ruta rutas;
      private Date estimacionRecoleccion;
      private Date estimacionEntrega;
+     private boolean seEntrego;
+     private boolean seRecogio;
 
     public Despacho() {
     }
@@ -95,8 +97,28 @@ public class Despacho  implements java.io.Serializable {
     public void setEstimacionEntrega(Date estimacionEntrega) {
         this.estimacionEntrega = estimacionEntrega;
     }
+    
+    @Column(name = "seEntrego")
+    public boolean isSeEntrego() {
+        return seEntrego;
+    }
+
+        
+    public void setSeEntrego(boolean seEntrego) {
+        this.seEntrego = seEntrego;
+    }
+
+    @Column(name = "seRecogio")
+    public boolean isSeRecogio() {
+        return seRecogio;
+    }
+
+    public void setSeRecogio(boolean seRecogio) {
+        this.seRecogio = seRecogio;
+    }
 
 
+    
 
 
 }
