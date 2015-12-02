@@ -76,6 +76,12 @@
         this.getDspachosByRuta = function (idRuta){
             return $http.get('/rest/despachos/rutas/'+idRuta);
         };
+        
+         this.postModificarProductoEnVenta = function(productoModificado){
+            return $http.post('/rest/productosEnVenta/modificarProductoEnVenta',productoModificado);
+        };
+        
+        
     }
     );
 

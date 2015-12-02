@@ -253,6 +253,60 @@
         
     });
     
+    app.controller('modificarFichaController',function($scope,$log,AgroservicesRestAPI){
+        
+        $scope.modIdCampesino;
+        $scope.modproductosEnVenta = [];
+        $scope.estado = false;
+        
+        $scope.productoModificar = {};
+        
+        
+        
+        $scope.buscarProductosEnVenta = function(){          
+          $scope.modconsultarFichas = true;
+          $scope.modproductoEnVentaPromise = AgroservicesRestAPI.getProductosEnVentaPorCampesino($scope.modIdCampesino)
+                .success(function(data,status,header,config){
+                    $log.log(data);
+                    $scope.modproductosEnVenta = data;
+                }).error(function(data,status,header,config){
+                    $log.log(data);                    
+                });          
+        };
+        
+        $scope.productoModificarSeleccionado = function (modProductoModificar){
+            
+            
+            $scope.productoModificar = modProductoModificar; 
+            $log.log($scope.productoModificar);
+            $scope.estado = true;
+            
+            
+        };
+        
+        $scope.modificarFichaTecnica = function(){
+            
+            $log.log("entro a la funcion de modificacion");
+            
+            AgroservicesRestAPI.postModificarProductoEnVenta($scope.productoModificar).success(                    
+                    function(data,status,header,config){
+                        $log.log("Post exitoso");
+                        alert("Modificación Exitosa..");
+                        
+                    }).error(function(data,status,header,config){
+                        $log.log("Post fail");
+                        $log.log(data+" "+status);
+                        alert("Modificación Fallida..");
+                        
+                    });
+                    
+        };
+        
+        
+
+        
+    });
+    
     
     
     app.config(function($routeProvider){
@@ -274,6 +328,9 @@
                 })
                 .when('/notificaciones',{
                     templateUrl: 'home-notificaciones.html'
+                })
+                .when('/modificarProducto',{
+                    templateUrl: 'campesinos-modificar-ficha-tecnica.html'
                 })
                 .when('/confirmarRutas',{
                     templateUrl: 'confirmacion-rutas-transportistas.html'

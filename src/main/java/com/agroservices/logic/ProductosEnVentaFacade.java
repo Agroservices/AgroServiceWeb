@@ -60,4 +60,27 @@ public class ProductosEnVentaFacade {
         return pr.getProductosEnVenta();
         
     }
+    
+    /**
+     * Método encargado de modificar el precio por kg del producto en venta especificado
+     * @param productoModificado
+     * @return 
+     */
+    
+    public boolean modificarProductoEnVenta(ProductoEnVenta productoModificado){
+        
+        try{
+            ProductoEnVenta producto = pr.findOne(productoModificado.getIdProductosEnVenta());
+            ProductoEnVenta productoActualizado = pr.findOne(producto.getIdProductosEnVenta());
+        
+            productoActualizado.setPrecioPorKg(productoModificado.getPrecioPorKg());
+        
+            pr.save(productoActualizado);
+            
+            return true;
+        }catch(Exception ex){
+            return false;
+        }
+        
+    }
 }

@@ -8,6 +8,7 @@ package com.agroservices.restcontrollers;
 import com.agroservices.logic.CampesinosFacade;
 import com.agroservices.logic.ProductosEnVentaFacade;
 import com.agroservices.logic.ProductosFacade;
+import com.agroservices.logic.informacionTarjeta;
 import com.agroservices.model.Campesino;
 import com.agroservices.model.Producto;
 import com.agroservices.model.ProductoEnVenta;
@@ -16,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,6 +93,27 @@ public class ProductosEnVentaRest {
     @RequestMapping(value = "/{idProducto}/nombre", method = RequestMethod.GET)
     public String nombreProductoEnVentaPorId(@PathVariable int idProducto){
         return pef.consultarNombreDeProducto(idProducto);
+    }
+    
+    /**
+     * Método encargado de recibir la petició de POST para el producto en venta a modificar y manejar de forma adecuada dicha petición
+     * @param elemento
+     * @return 
+     */
+    
+    @RequestMapping(value = "/modificarProductoEnVenta",method = RequestMethod.POST)
+    public ResponseEntity<?> modificarProductoVenta(@RequestBody ProductoEnVenta  elemento){
+        
+        
+        if(pef.modificarProductoEnVenta(elemento)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+       
+        
+        
+        
     }
     
 }
