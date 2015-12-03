@@ -49,8 +49,8 @@ public class DespachoRest {
     }
     
     @RequestMapping(value = "/{id}/seEntrego",method = RequestMethod.POST)
-    public ResponseEntity<?>modificarEstadoEntrega(@PathVariable int id,@RequestBody Despacho d){                    
-            boolean ans = df.setEstadoEntrega(id, d.isSeEntrego());
+    public ResponseEntity<?>modificarEstadoEntrega(@PathVariable int id,@RequestBody Despacho des){                    
+            boolean ans = df.setEstadoEntrega(id, des.isSeEntrego());
             if(ans){
                 return new ResponseEntity<>(HttpStatus.CREATED);
             }
@@ -58,8 +58,8 @@ public class DespachoRest {
     }
     
     @RequestMapping(value = "/{id}/seRecogio",method = RequestMethod.POST)
-    public ResponseEntity<?>modificarEstadoRecogida(@PathVariable int id, @RequestBody Despacho d){            
-            boolean ans = df.setEstadoRecogida(id, d.isSeRecogio());
+    public ResponseEntity<?>modificarEstadoRecogida(@PathVariable int id, @RequestBody Despacho des){            
+            boolean ans = df.setEstadoRecogida(id, des.isSeRecogio());
             if(ans){
                 return new ResponseEntity<>(HttpStatus.CREATED);
             }
