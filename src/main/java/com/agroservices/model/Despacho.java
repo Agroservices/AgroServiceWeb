@@ -43,7 +43,19 @@ public class Despacho  implements java.io.Serializable {
        this.estimacionRecoleccion = estimacionRecoleccion;
        this.estimacionEntrega = estimacionEntrega;
     }
+
+    public Despacho(Integer idDespachos, DetalleFactura detalleFactura, Ruta rutas, Date estimacionRecoleccion, Date estimacionEntrega, boolean seEntrego, boolean seRecogio) {
+        this.idDespachos = idDespachos;
+        this.detalleFactura = detalleFactura;
+        this.rutas = rutas;
+        this.estimacionRecoleccion = estimacionRecoleccion;
+        this.estimacionEntrega = estimacionEntrega;
+        this.seEntrego = seEntrego;
+        this.seRecogio = seRecogio;
+    }
    
+    
+    
      @Id @GeneratedValue/*(strategy=IDENTITY)*/
 
     

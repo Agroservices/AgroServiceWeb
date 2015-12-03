@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +47,24 @@ public class DespachoRest {
     public List<Despacho> DespachoByRuta(@PathVariable int id)throws OperationFailedException{
         return df.getDespachosByRuta(id);
     }
+    
+    @RequestMapping(value = "/{id}/seEntrego",method = RequestMethod.POST)
+    public ResponseEntity<?>modificarEstadoEntrega(@PathVariable int id,@RequestBody Despacho d){                    
+            boolean ans = df.setEstadoEntrega(id, d.isSeEntrego());
+            if(ans){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+    
+    @RequestMapping(value = "/{id}/seRecogio",method = RequestMethod.POST)
+    public ResponseEntity<?>modificarEstadoRecogida(@PathVariable int id, @RequestBody Despacho d){            
+            boolean ans = df.setEstadoRecogida(id, d.isSeRecogio());
+            if(ans){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }    
     
     /**
      * Método encargado de confirmar que el producto comprado por el minorista le fue entregado

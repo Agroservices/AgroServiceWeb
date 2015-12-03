@@ -213,4 +213,27 @@ public class DespachosFacade {
         
     }
     
+    public boolean setEstadoEntrega(int idDespacho,boolean estadoEntrega){
+        try{
+            Despacho d = dr.findOne(idDespacho);
+            d.setSeEntrego(estadoEntrega);
+            dr.save(d);
+            return true;
+        }catch (Exception e){
+            return false;
+        }        
+    }
+    
+    public boolean setEstadoRecogida(int idDespacho,boolean estadoRecogida){
+        try{
+            Despacho d = dr.findOne(idDespacho);
+            d.setSeRecogio(estadoRecogida);
+            dr.save(d);
+            return true;
+        }catch (Exception e){
+            return false;
+        }        
+    }    
+    
+    
 }
