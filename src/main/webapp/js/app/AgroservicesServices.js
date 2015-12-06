@@ -28,7 +28,7 @@
             return $http({
                 method: 'POST',
                 //url: '/rest/compras/tarjetaValidacion/',
-                url: 'http://paymentsgateway.herokuapp.com/rest/payments',
+                url: 'https://paymentsgateway.herokuapp.com/rest/payments',
                 data: tarjeta
             });
 
