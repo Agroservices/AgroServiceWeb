@@ -21,15 +21,21 @@
         };
         
 
-        this.validarInformacionTarjeta = function (numeroTar,codigoTar,mesTar,anoTar){
+        this.validarInformacionTarjeta = function (numeroTar,codigoTar,tipoTar,nombreCli,cuentaDes,descripcion,montoTrans){
             
-            var tarjeta = {"numero":numeroTar,"codigo":codigoTar,"mesVencimiento":mesTar,"anoVencimiento":anoTar};
+            var tarjeta = {"numeroTarjeta":numeroTar,"codigoSeguridad":codigoTar,"tipo":tipoTar,"nombreCliente":nombreCli,"cuentaDestino":cuentaDes,"descripcion":descripcion,"montoTransaccion":montoTrans};
+            alert(angular.toJson(tarjeta));
             return $http({
                 method: 'POST',
-                url: '/rest/compras/tarjetaValidacion/',
+                //url: '/rest/compras/tarjetaValidacion/',
+                url: 'http://paymentsgateway.herokuapp.com/rest/payments',
                 data: tarjeta
             });
 
+        };
+        
+        this.getTransaccion = function (codigoTransaccion){
+            return $http.get('/rest/compras/transaccion/'+codigoTransaccion);
         };
         
         this.agregarFactura = function (transaccion,impuestoFactura,idProductoEnVenta,idMinorista,cantidad){
@@ -75,6 +81,10 @@
         
         this.getDspachosByRuta = function (idRuta){
             return $http.get('/rest/despachos/rutas/'+idRuta);
+        };
+        
+        this.getNombreMinorista = function (idMinorista){
+            return $http.get('/rest/minoristas/nombre/'+idMinorista);
         };
         
          this.postModificarProductoEnVenta = function(productoModificado){

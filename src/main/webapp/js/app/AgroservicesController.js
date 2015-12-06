@@ -17,18 +17,28 @@
         $scope.ProductoEnVenta;
         $scope.costoCompra = 0;
         
+        $scope.activadorBoton = false;
+        
         //Variables que contiene la informacion de la tarjeta
+        
         
         $scope.numeroTarjeta;
         $scope.codigoTarjeta;
-        $scope.mesVencimiento;
+        $scope.tipoTarjeta;
         $scope.anoVencimiento;
         $scope.informacionTarjeta;
         
         //Variables relacionadas con la compra
         
-        $scope.idMinorista = 1013627899;
+        $scope.idMinorista;
+        $scope.nombreMinorista;
         $scope.tarjeta;
+        $scope.cuentaDestino = "2789817823-bancolombia";
+        $scope.descripcion;
+        
+        $scope.activadorConsultaCompra = true;
+        $scope.activadorSeleccionCompra = false;
+        $scope.activarCompra = false;
         
         //Vaariables del transportista
         $scope.idTransportista = 0;
@@ -56,46 +66,87 @@
         };
         
         $scope.getProductosEnventa = function(){
-            $scope.sumaId = $scope.idProductoConsulta.toString() + "-" + $scope.cantidadConsulta;
+            
+            $scope.sumaId = $scope.idProductoConsulta.toString();
+            $scope.sumaId = $scope.sumaId + "-" + $scope.cantidadConsulta;
             //alert($scope.sumaId);
             $scope.productosEnVenta = AgroservicesRestAPI.getProductosEnVentaConsulta($scope.sumaId).success(function(data, status,headers, config){
                 //alert(angular.toJson(data));
                 $scope.productosEnVenta = data;
+                $scope.activadorSeleccionCompra = true;
                 
                 
             });
-            
-            
+              
             
         };
         
         $scope.setProductoEnVentaSeleccionado = function(productoEnVenta){
-            //alert(idProductoEnVenta);
+            
             $scope.ProductoEnVenta = productoEnVenta;
             $scope.costoCompra = $scope.cantidadConsulta * $scope.ProductoEnVenta.precioPorKg;
-            
+            $scope.activarCompra = true;
         };
 
+        
+        $scope.obtenerMinorista = function(){
+            
+            AgroservicesRestAPI.getNombreMinorista($scope.idMinorista).success(                    
+                    function(data,status,header,config){
+                        
+                        $scope.nombreMinorista = data.toString();
+                        
+                        alert("Bienvenido: "+$scope.nombreMinorista);
+                        $scope.activadorConsultaCompra = false;
+                        
+                    }).error(function(data,status,header,config){
+                        $log.log("Error obteniendo minorista.");
+                        $log.log(data+" "+status);
+                    });
+                    
+            
+        };
         
         $scope.realizarCompra = function(){
             //{"numero":12345,"codigo":111,"mesVencimiento":2,"añoVencimiento":2016}
             
+            
+            
             $scope.transaccionBacaria;
             
-            AgroservicesRestAPI.validarInformacionTarjeta($scope.numeroTarjeta,$scope.codigoTarjeta,$scope.mesVencimiento,$scope.anoVencimiento).success(                    
+            $scope.transaccion;
+            
+            $scope.activadorBoton = true;
+            
+            $scope.descripcion = "Compra cliente " + $scope.nombreMinorista + " de " + $scope.ProductoEnVenta.descripcion;
+            
+            AgroservicesRestAPI.validarInformacionTarjeta($scope.numeroTarjeta,$scope.codigoTarjeta,$scope.tipoTarjeta,$scope.nombreMinorista,$scope.cuentaDestino,$scope.descripcion,$scope.costoCompra).success(                    
                     function(data,status,header,config){
                         $log.log("Post Transaccion exitoso");
                         
                         $scope.transaccionBacaria = data;
-                        //$log.log($scope.transaccionBacaria);
+                        $log.log($scope.transaccionBacaria);
                         
-                        AgroservicesRestAPI.agregarFactura($scope.transaccionBacaria,$scope.costoCompra*0.16,$scope.ProductoEnVenta.idProductosEnVenta,$scope.idMinorista,$scope.cantidadConsulta).success(function(data,status,header,config){
-                            $log.log("POST compra exitoso");
-                            alert("Transaccion Exitosa!!");
+                        AgroservicesRestAPI.getTransaccion($scope.transaccionBacaria).success(function(data,status,header,config){
+                           
+                           $scope.transaccion = data;
+                           $log.log($scope.transaccion);
+                           
                         }).error(function(data,status,header,config){
-                            $log.log("Post COMPRA fail");
-                            $log.log(data+" "+status);
+                            
+                            $log.log("Get transaccion fallida..");
+                            
                         });
+                        
+                        
+//                        AgroservicesRestAPI.agregarFactura($scope.transaccion,$scope.costoCompra*0.16,$scope.ProductoEnVenta.idProductosEnVenta,$scope.idMinorista,$scope.cantidadConsulta).success(function(data,status,header,config){
+//                            $log.log("POST compra exitoso");
+//                            alert("Transaccion Exitosa!!");
+//                            $scope.activadorBoton = false;
+//                        }).error(function(data,status,header,config){
+//                            $log.log("Post COMPRA fail");
+//                            $log.log(data+" "+status);
+//                        });
                         
                     }).error(function(data,status,header,config){
                         alert("Datos de la tarjeta incorrectos...");
@@ -106,6 +157,7 @@
             
             
         };
+               
         
         $scope.despachosPorRuta = function (ruta){
             $scope.despachos = AgroservicesRestAPI.getDspachosByRuta(ruta.idRutas).success(function(data,status,headers,config){

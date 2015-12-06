@@ -22,7 +22,9 @@ import com.agroservices.persistence.ProductosRepository;
 import com.agroservices.persistence.TransaccionesBancariasRepository;
 import com.agroservices.persistence.VentasRepository;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,7 +86,13 @@ public class ComprasFacade {
         
         Factura facturaActualizada = fr.findOne(factura.getIdFacturas());
         
-        facturaActualizada.getDetalleFacturas().add(detalleFactura);
+        Set <DetalleFactura> detalleFacturasNuevo = new HashSet<DetalleFactura>(0);
+        
+        detalleFacturasNuevo.add(detalleFactura);
+        
+        //facturaActualizada.getDetalleFacturas().add(detalleFactura);
+        
+        facturaActualizada.setDetalleFacturas(detalleFacturasNuevo);
         
         fr.save(facturaActualizada);
         

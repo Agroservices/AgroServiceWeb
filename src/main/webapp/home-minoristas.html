@@ -11,13 +11,23 @@
                 </div>
             </div>
             
-            <!-- formulario consulta -->
+            <!-- Ingreso información Minorista -->
             
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
+                    <label for="IdMinorista">ID Minorista</label>
+                    <input type="number" ng-model="idMinorista" class="form-control" required id="IdMinorista" placeholder="Identificación Minorista"/>
+                    <button class="btn btn-primary"  ng-click="obtenerMinorista()">Ingresar</button>
+                </div>
+            </div>
+            
+            <!-- formulario consulta -->
+            
+            <div class="row" >
+                <div class="col-lg-8 col-lg-offset-2">
                     <label>Productos :</label>
-                    <select ng-model="idProductoConsulta" style="color: #000">
-                        <option  ng-repeat="prod in productos" value="{{prod.idProductos}}"  >{{prod.nombre}}</option>
+                    <select ng-model="idProductoConsulta"  style="color: #000" >
+                        <option  ng-repeat="prod in productos" value="{{prod.idProductos}}" >{{prod.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2">
@@ -31,7 +41,7 @@
             
             <!-- Tabla que muestra la informacion de los productos en venta para su seleccion -->
             
-            <div class="row">
+            <div class="row" ng-if="activadorSeleccionCompra">
             <div class="col-lg-8 col-lg-offset-2">
                 <table class="table table-condensed table-bordered table-hover">
                     <thead>
@@ -55,11 +65,12 @@
             
             <!-- Formulario para la compra del producto selecciado-->
             
-            <div class="row">
-                <h3 class="col-lg-8 col-lg-offset-2">Compra producto.</h3>
-            </div>
+            
 
+            <div>
+                
             <div class="row">
+                
             <div class="col-lg-8 col-lg-offset-2">
                 <table class="table table-condensed table-bordered table-hover">
                     <thead>
@@ -74,9 +85,10 @@
                     </thead>                    
                 </table>
             </div>
+                
             </div>            
                                   
-            <div class="row">
+                <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
@@ -101,15 +113,15 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Mes vencimineto</label>
-                                <input  type="number" class="form-control" placeholder="Mes vencimiento" ng-model="mesVencimiento" id="mes" required data-validation-required-message="Ingrese el mes de vencimiento de la tarjeta.">
+                                <input  type="text" class="form-control" placeholder="Tipo de la tarjeta" ng-model="tipoTarjeta" id="tipo" required data-validation-required-message="Ingrese el mes de vencimiento de la tarjeta.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Año vencimiento</label>
-                                <input  type="number" class="form-control" placeholder="Año vencimiento" ng-model="anoVencimiento" id="año" required data-validation-required-message="Ingrese el año de vencimiento.">
+                                <label>Cuenta destino</label>
+                                <input  type="text" class="form-control"  ng-model="cuentaDestino" id="año" ng-disabled="true" >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -117,12 +129,16 @@
                         <div id="comprar"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-primary" ng-click="realizarCompra()" >Comprar</button>
+                                <button type="submit" class="btn btn-primary" ng-click="realizarCompra()" ng-disabled="activadorBoton" >Comprar</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+                
+            </div>
+            
+            
         </div>
     </section>    
     

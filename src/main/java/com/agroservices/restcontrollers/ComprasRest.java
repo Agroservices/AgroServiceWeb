@@ -72,6 +72,12 @@ public class ComprasRest {
     }
     
     
+    @RequestMapping(value = "/transaccion/{codigo}",method = RequestMethod.GET)
+    public TransaccionBancaria getTransaccionCodigo(@PathVariable String codigo){
+        return new TransaccionBancaria(codigo, null);
+    }
+    
+    
     @RequestMapping(value = "/{idMinorista}/{idProductoEnVenta}/{cantidadComprada}",method = RequestMethod.POST)
     public ResponseEntity<?> agregarCompra(@PathVariable int idMinorista, @PathVariable int idProductoEnVenta, @PathVariable float cantidadComprada ,@RequestBody Factura factura){
         
