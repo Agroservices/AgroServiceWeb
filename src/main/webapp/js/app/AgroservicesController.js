@@ -139,14 +139,14 @@
                         });
                         
                         
-//                        AgroservicesRestAPI.agregarFactura($scope.transaccion,$scope.costoCompra*0.16,$scope.ProductoEnVenta.idProductosEnVenta,$scope.idMinorista,$scope.cantidadConsulta).success(function(data,status,header,config){
-//                            $log.log("POST compra exitoso");
-//                            alert("Transaccion Exitosa!!");
-//                            $scope.activadorBoton = false;
-//                        }).error(function(data,status,header,config){
-//                            $log.log("Post COMPRA fail");
-//                            $log.log(data+" "+status);
-//                        });
+                        AgroservicesRestAPI.agregarFactura($scope.transaccion,$scope.costoCompra*0.16,$scope.ProductoEnVenta.idProductosEnVenta,$scope.idMinorista,$scope.cantidadConsulta).success(function(data,status,header,config){
+                            $log.log("POST compra exitoso");
+                            alert("Transaccion Exitosa!!");
+                            $scope.activadorBoton = false;
+                        }).error(function(data,status,header,config){
+                            $log.log("Post COMPRA fail");
+                            $log.log(data+" "+status);
+                        });
                         
                     }).error(function(data,status,header,config){
                         alert("Datos de la tarjeta incorrectos...");

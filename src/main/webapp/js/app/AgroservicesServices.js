@@ -29,6 +29,7 @@
                 method: 'POST',
                 //url: '/rest/compras/tarjetaValidacion/',
                 url: 'https://paymentsgateway.herokuapp.com/rest/payments',
+                contentType:'application/json',
                 data: tarjeta
             });
 
